@@ -43,6 +43,11 @@ export function DemoSection() {
     if (!viewerOpen && element.open) element.close();
   }, [viewerOpen]);
 
+  // Fetch every screen as the page opens, so switching never waits on a download.
+  useEffect(() => {
+    for (const item of gallery) if (item.src) { const image = new Image(); image.src = item.src; }
+  }, []);
+
   useEffect(() => {
     if (!selectedVideo || !videoRef.current) return;
     if (videoPlaying) void videoRef.current.play().catch(() => setVideoPlaying(false));
@@ -56,7 +61,7 @@ export function DemoSection() {
   return (
     <section className="demo-section" id="demo">
       <div className="section-wrap demo-inner">
-        <SectionHeading title={<>See <em>Relaya</em> in action.</>} description="Follow one thought from setting up a session to saying it in your meeting, in your own voice or through Google Meet." />
+        <SectionHeading title={<>See <em>Relaya</em> in action.</>} description="Follow one thought from setting up a session to saying it in your meeting." />
         <div className="demo-gallery" id="demo-gallery" data-reveal>
           <div className="gallery-stage" id="gallery-panel" aria-roledescription="carousel" aria-label="Relaya sample screens" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
             <button className="expand-button" type="button" aria-label="Expand preview" title="Expand preview" onClick={() => setViewerOpen(true)}><Maximize size={22} strokeWidth={2.25} aria-hidden="true" /></button>

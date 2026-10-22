@@ -112,13 +112,13 @@ export const walkthrough: Array<{
 // Register real screenshots here as they arrive. `screen` supplies the accurate
 // interface recreation until a file is available; no broken-image state is shown.
 export const gallery = [
-  { id: "session-setup", title: "New Session", caption: "Pick how you'll speak, your tone, and the names Relaya should get right.", screen: "setup" as const, src: null as string | null },
-  { id: "sentence-review", title: "Review your sentence", caption: "Read the suggested English before it is delivered.", screen: "sentence" as const, src: null as string | null },
-  { id: "context-guard", title: "Check the details", caption: "See how names, numbers, and uncertainty are reviewed.", screen: "guard" as const, src: null as string | null },
-  { id: "say-output", title: "Say it yourself", caption: "Once you approve, the sentence shows in large type. Unmute and read it in your own voice.", screen: "say-output" as const, src: null as string | null },
-  { id: "meet-output", title: "Through Google Meet", caption: "Relaya joins your Google Meet as a labeled AI guest and says your approved sentence. Stop it anytime.", screen: "meet-output" as const, src: null as string | null },
-  { id: "workspace-settings", title: "Voice options", caption: "Pick the voice and speed Relaya speaks with in your meetings.", screen: "workspace" as const, src: null as string | null },
-  { id: "session-preferences", title: "Preferences", caption: "Set your usual mode, tone, languages, and push-to-talk key.", screen: "preferences" as const, src: null as string | null },
+  { id: "session-setup", title: "New Session", caption: "Pick how you'll speak, your tone, and the names Relaya should get right.", screen: "setup" as const, src: "/screens/setup.webp" as string | null },
+  { id: "sentence-review", title: "Review your sentence", caption: "Read the suggested English before it is delivered.", screen: "sentence" as const, src: "/screens/sentence.webp" as string | null },
+  { id: "context-guard", title: "Check the details", caption: "See how names, numbers, and uncertainty are reviewed.", screen: "guard" as const, src: "/screens/guard.webp" as string | null },
+  { id: "say-output", title: "Say it yourself", caption: "Once you approve, the sentence shows in large type. Unmute and read it in your own voice.", screen: "say-output" as const, src: "/screens/say-output.webp" as string | null },
+  { id: "meet-output", title: "Through Google Meet", caption: "Relaya joins your Google Meet as a labeled AI guest and says your approved sentence. Stop it anytime.", screen: "meet-output" as const, src: "/screens/meet-output.webp" as string | null },
+  { id: "workspace-settings", title: "Voice options", caption: "Pick the voice and speed Relaya speaks with in your meetings.", screen: "workspace" as const, src: "/screens/workspace.webp" as string | null },
+  { id: "session-preferences", title: "Preferences", caption: "Set your usual mode, tone, languages, and push-to-talk key.", screen: "preferences" as const, src: "/screens/preferences.webp" as string | null },
 ];
 
 // Add the video path when a demonstration is ready. A designed placeholder is
