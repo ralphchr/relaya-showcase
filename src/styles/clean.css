@@ -67,7 +67,8 @@ html, body { background: #fff; }
 
 /* One screen at a time at every width: swipe, arrows or dots; title and caption below. */
 .demo-gallery { position: relative; }
-.demo-page .gallery-stage { touch-action: pan-y; }
+/* The only rule for the space around the screen (more specific than the older ones, so build order can't change it). */
+.demo-page .demo-gallery .gallery-stage { padding: 44px 5% 0; touch-action: pan-y; }
 /* The screens are images now: same 1440×900 frame the live previews used. */
 .demo-page .gallery-screen.media-preview, .demo-page .viewer-screen.media-preview { height: auto; min-height: 0; aspect-ratio: 8 / 5; background: #fff8f3; }
 .demo-page .media-preview img { object-fit: cover; }
@@ -128,6 +129,6 @@ html, body { background: #fff; }
 
 /* Phones and small tablets: little space above the screen; expand sits on its corner */
 @media (max-width: 760px) {
-  .demo-page .gallery-stage { padding-top: 18px; }
+  .demo-page .demo-gallery .gallery-stage { padding: 18px 12px 0; }
   .demo-page .expand-button { top: 26px; right: 22px; width: 44px; height: 44px; min-height: 44px; }
 }
