@@ -1,5 +1,6 @@
 import { AudioLines, Check, CheckCheck, ChevronDown, CircleHelp, Headphones, Mic, MoreHorizontal, ShieldCheck, Sparkles, UserRound, Users, X } from "lucide-react";
 import type { ScreenId } from "../data/showcase";
+import { OriginalAppPreview } from "./OriginalAppPreview";
 
 const nav = [
   { title: "New session", icon: Sparkles },
@@ -85,6 +86,7 @@ function WorkspaceScreen() {
 }
 
 export function ScreenPreview({ screen, className = "", alt }: { screen: ScreenId; className?: string; alt: string }) {
+  if (screen === "say-output" || screen === "meet-output" || screen === "preferences") return <OriginalAppPreview screen={screen} className={className} alt={alt} />;
   const content = {
     setup: <SetupScreen />,
     sentence: <SentenceScreen />,

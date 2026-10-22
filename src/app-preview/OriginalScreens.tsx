@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowRight, Bell, BookOpenText, Check, ChevronDown, ChevronUp, CircleHelp, LogOut, Mic, PanelLeft, Pencil, PictureInPicture2, Play, Plus, RotateCcw, Search, Settings, ShieldAlert, ShieldCheck, Volume2 } from "lucide-react";
+import { ArrowRight, Bell, BookOpenText, Check, ChevronDown, ChevronRight, ChevronUp, CircleHelp, LogOut, Mic, MicOff, PanelLeft, Pencil, Phone, PictureInPicture2, Play, Plus, RotateCcw, Search, Settings, ShieldAlert, ShieldCheck, Square, Video, Volume2 } from "lucide-react";
 import type { ScreenId } from "../data/showcase";
 
 function Mark({ size = 30 }: { size?: number }) {
@@ -91,6 +91,68 @@ function ReviewScreen({ flagged = false }: { flagged?: boolean }) {
   );
 }
 
+const approvedSentence = "It might take about three more days before we can deliver it.";
+
+function DeliveryPanel({ speak = false }: { speak?: boolean }) {
+  return (
+    <aside className="rpanel" aria-label="Relaya output panel">
+      <header className="rp-top">
+        <Mark /><span className="mode-pill">{speak ? <Volume2 className="icon" /> : <Mic className="icon" />}{speak ? "Speak for me" : "Say it yourself"}</span><span className="spacer" />
+        <div className="tone-picker tone"><button className="tone-picker-trigger" type="button"><span>Professional</span><ChevronDown className="icon" /></button></div>
+        <button type="button" className="icon-btn sm" aria-label="Pop out beside your meeting"><PictureInPicture2 className="icon" /></button>
+        <button type="button" className="icon-btn sm danger" aria-label="End session"><LogOut className="icon" /></button>
+      </header>
+      <div className="rp-body">
+        <div className="guest-preview-banner">Sample approved sentence</div>
+        {speak ? <div className="card output big"><div className="head"><span className="l"><Mark /></span><span className="chip chip-green"><span className="wave">{[6,12,8,14,7].map((height,index) => <i key={index} style={{height}} />)}</span>Speaking</span></div><p className="willsay">{approvedSentence}</p></div>
+          : <div className="prompter"><div className="head"><span className="l"><Mark /><span className="chip chip-green"><Mic className="icon" />Unmute in your call</span></span><span className="chip chip-line">Read it aloud</span></div><p className="willsay">{approvedSentence}</p></div>}
+      </div>
+      <div className="rp-foot"><button type="button" className="btn btn-ghost hold">{speak ? <><Square className="icon" />Stop</> : <><Check className="icon" />Done</>}</button></div>
+    </aside>
+  );
+}
+
+function DeliveryScreen({ speak = false }: { speak?: boolean }) {
+  if (!speak) return <div className="session-page"><DeliveryPanel /></div>;
+  return (
+    <div className="meet-output-preview">
+      <section className="sample-meeting" aria-label="Illustrated Google Meet output">
+        <header className="sample-meeting-header"><span><Video size={24} />Google Meet</span><small>ILLUSTRATED DEMO · NOT A LIVE CALL</small></header>
+        <div className="sample-meeting-title"><span>Product team catch-up</span><b>Relaya is speaking your approved sentence</b></div>
+        <div className="sample-meeting-tiles">
+          <div className="sample-person"><span className="sample-avatar">D</span><b>Dana (You)</b><MicOff size={18} /></div>
+          <div className="sample-person"><span className="sample-avatar teammate">J</span><b>Jamie</b><MicOff size={18} /></div>
+          <div className="sample-person sample-agent"><span className="sample-avatar"><Mark size={58} /></span><b>Dana’s Relaya (AI)</b><span className="sample-speaking"><Volume2 size={16} />Speaking</span></div>
+        </div>
+        <div className="sample-meeting-sentence"><small>APPROVED SENTENCE · HEARD IN THE MEETING</small><p>“{approvedSentence}”</p></div>
+        <footer className="sample-meeting-footer"><span><MicOff size={20} /></span><span><Video size={20} /></span><span className="sample-hangup"><Phone size={22} /></span></footer>
+      </section>
+      <DeliveryPanel speak />
+    </div>
+  );
+}
+
+function PreferencesScreen() {
+  const fields = [{ label: "Default mode", value: "Say it yourself" }, { label: "Default tone", value: "Professional" }, { label: "Spoken languages", value: "Auto-detect mixed speech" }];
+  return (
+    <WorkspaceShell title="Settings">
+      <div className="workspace-page">
+        <div className="workspace-intro"><p className="workspace-eyebrow">YOUR ACCOUNT</p><div className="workspace-intro-row"><div><h2>Settings</h2><p>Your preferences for every new session.</p></div></div></div>
+        <div className="settings-layout">
+          <nav className="settings-nav">{["Preferences", "Privacy", "Notifications"].map((label,index) => <a key={label} className={index === 0 ? "active" : ""}>{label}<ChevronRight size={15} /></a>)}</nav>
+          <section className="workspace-card settings-card"><form>
+            <h3>Session defaults</h3>
+            {fields.map(field => <div className="workspace-field" key={field.label}><span>{field.label}</span><div className="workspace-select"><button type="button" className="workspace-select-trigger"><span>{field.value}</span><ChevronDown size={17} /></button></div></div>)}
+            <fieldset className="profile-gender-field"><legend>Voice personalization</legend><p>Choose the default voice profile for your Relaya agent.</p><div className="profile-gender-options"><label className="selected"><input type="radio" name="sample-gender" defaultChecked /><span>Female voice</span></label><label><input type="radio" name="sample-gender" /><span>Male voice</span></label></div></fieldset>
+            <div className="workspace-field"><span>Push-to-talk key</span><small>Hold it while the Relaya panel is in front to record. Esc and Enter stay as cancel and approve.</small><div className="ptt-key-row"><button type="button" className="wp-button ptt-key"><kbd>Space</kbd></button></div></div>
+            <p className="workspace-local-note">Choose the languages you usually mix to help speech recognition keep more words in their original language.</p>
+          </form></section>
+        </div>
+      </div>
+    </WorkspaceShell>
+  );
+}
+
 function VoiceScreen() {
   const voices = [{ name: "Heart", accent: "American", gender: "female" }, { name: "Bella", accent: "American", gender: "female" }, { name: "Emma", accent: "British", gender: "female" }, { name: "Michael", accent: "American", gender: "male" }, { name: "Fenrir", accent: "American", gender: "male" }, { name: "George", accent: "British", gender: "male" }];
   return (
@@ -113,6 +175,9 @@ function VoiceScreen() {
 export function OriginalScreens({ screen }: { screen: ScreenId }) {
   if (screen === "sentence") return <ReviewScreen />;
   if (screen === "guard") return <ReviewScreen flagged />;
+  if (screen === "say-output") return <DeliveryScreen />;
+  if (screen === "meet-output") return <DeliveryScreen speak />;
   if (screen === "workspace") return <VoiceScreen />;
+  if (screen === "preferences") return <PreferencesScreen />;
   return <SetupScreen />;
 }

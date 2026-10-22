@@ -13,7 +13,8 @@ import "./preview-only.css";
 import type { ScreenId } from "../data/showcase";
 
 const requested = new URLSearchParams(window.location.search).get("screen");
-const screen: ScreenId = requested === "sentence" || requested === "guard" || requested === "workspace" ? requested : "setup";
+const screens: ScreenId[] = ["setup", "sentence", "guard", "say-output", "meet-output", "workspace", "preferences"];
+const screen = screens.find((screen) => screen === requested) ?? "setup";
 const root = document.getElementById("root")!;
 root.setAttribute("inert", "");
 ReactDOM.createRoot(root).render(<React.StrictMode><OriginalScreens screen={screen} /></React.StrictMode>);

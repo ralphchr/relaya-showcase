@@ -36,7 +36,7 @@ export function DemoSection() {
   return (
     <section className="demo-section" id="demo">
       <div className="section-wrap demo-inner">
-        <SectionHeading eyebrow="Take a closer look" title={<>A closer look at<br /><em>Relaya in action.</em></>} description="Browse the app preview and a sample session. This is a guided demonstration, not a connected Relaya account." />
+        <SectionHeading eyebrow="Take a closer look" title={<>A closer look at<br /><em>Relaya in action.</em></>} description="Follow a thought from setup and review to speaking it yourself or delivering it through Google Meet. Finish with voice options and your session preferences." />
         <div className="demo-gallery" id="demo-gallery" data-reveal>
           <div className="gallery-toolbar"><div className="gallery-tabs" role="tablist" aria-label="Relaya sample screens">
             {gallery.map((item, index) => <button key={item.id} type="button" role="tab" aria-selected={index === selected} aria-controls="gallery-panel" id={`gallery-tab-${item.id}`} className={index === selected ? "active" : ""} onClick={() => setSelected(index)}>{item.title}</button>)}

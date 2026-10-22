@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { AudioLines, CheckCheck, Languages, ShieldCheck } from "lucide-react";
 
-export type ScreenId = "setup" | "sentence" | "guard" | "workspace";
+export type ScreenId = "setup" | "sentence" | "guard" | "say-output" | "meet-output" | "workspace" | "preferences";
 
 export const navigation = [
   { label: "The idea", href: "#about" },
@@ -115,7 +115,10 @@ export const gallery = [
   { id: "session-setup", title: "New Session", caption: "Choose your speaking mode, tone, and names using Relaya’s original setup screen.", screen: "setup" as const, src: null as string | null },
   { id: "sentence-review", title: "Review your sentence", caption: "Read the suggested English before it is delivered.", screen: "sentence" as const, src: null as string | null },
   { id: "context-guard", title: "Check the details", caption: "See how names, numbers, and uncertainty are reviewed.", screen: "guard" as const, src: null as string | null },
-  { id: "workspace-settings", title: "Voice settings", caption: "Choose an agent voice, speaking speed, and name.", screen: "workspace" as const, src: null as string | null },
+  { id: "say-output", title: "Say it yourself", caption: "After approval, the sentence appears in large type. Unmute in your call, read it in your own voice, then choose Done.", screen: "say-output" as const, src: null as string | null },
+  { id: "meet-output", title: "Through Google Meet", caption: "Once the host admits your labeled AI guest, approve a sentence and Relaya speaks it in Google Meet. You can stop playback at any time. The meeting view here is an illustration.", screen: "meet-output" as const, src: null as string | null },
+  { id: "workspace-settings", title: "Voice options", caption: "Choose from Heart, Bella, Emma, Michael, Fenrir, and George. Adjust speaking speed and set the name your labeled AI guest uses in meetings.", screen: "workspace" as const, src: null as string | null },
+  { id: "session-preferences", title: "Preferences", caption: "Finish by choosing your default speaking mode and tone, spoken languages, voice profile, and push-to-talk key. Settings also includes privacy information and email preferences.", screen: "preferences" as const, src: null as string | null },
 ];
 
 // Add the video path when a demonstration is ready. A designed placeholder is

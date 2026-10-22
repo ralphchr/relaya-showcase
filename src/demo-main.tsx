@@ -4,6 +4,7 @@ import { DemoPage } from "./sections/DemoPage";
 import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/showcase.css";
+import "./styles/demo.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

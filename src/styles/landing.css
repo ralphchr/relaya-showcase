@@ -27,6 +27,46 @@
 /* The label floats above the card without changing its vertical center. */
 .landing-page .hero-visual .visual-label { position: absolute; bottom: calc(100% + 12px); left: 50%; margin: 0; white-space: nowrap; transform: translateX(-50%); }
 
+/* Decorations sit outside the real app capture and do not affect centering. */
+.snapshot-atmosphere { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.snapshot-halo { position: absolute; inset: -22% -12%; border-radius: 50%; background: radial-gradient(ellipse,rgba(255,107,139,.18),rgba(255,187,150,.1) 45%,transparent 70%); }
+.snapshot-orbit { position: absolute; inset: -12% -5%; border: 1px solid rgba(226,165,179,.25); border-radius: 50%; transform: rotate(-17deg); }
+.snapshot-sparkle { position: absolute; color: #f393ab; animation: snapshot-drift 7s ease-in-out infinite; }
+.snapshot-sparkle-one { top: -76px; right: 92px; }
+.snapshot-sparkle-two { bottom: -53px; left: 52px; color: #c6a576; animation-delay: -3s; }
+.snapshot-dot { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #ecb6c2; animation: snapshot-drift 9s ease-in-out infinite; }
+.snapshot-dot-one { top: 39%; right: -28px; }
+.snapshot-dot-two { bottom: -40px; left: 40%; width: 5px; height: 5px; background: #9bc5b0; animation-delay: -4s; }
+.snapshot-float { position: absolute; z-index: 3; display: flex; align-items: center; gap: 11px; padding: 13px 16px; border: 1px solid rgba(233,220,216,.8); border-radius: 18px; background: rgba(255,253,250,.96); box-shadow: 0 12px 32px rgba(100,57,71,.1),0 2px 5px rgba(100,57,71,.03); pointer-events: none; animation: snapshot-drift 6s ease-in-out infinite; }
+.snapshot-float-icon { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 12px; color: #e75d85; background: #ffeaf0; }
+.snapshot-float strong { display: flex; align-items: center; gap: 8px; color: #443a41; font-size: 13px; font-weight: 800; line-height: 1.5; white-space: nowrap; }
+.snapshot-float small { display: block; color: #8b7b83; font-size: 10px; font-weight: 500; line-height: 1.7; white-space: nowrap; }
+.snapshot-language { top: -58px; left: -24px; --float-tilt: -5deg; }
+.snapshot-language strong > svg { color: #ef87a2; }
+.snapshot-voice { top: 64px; right: -20px; gap: 9px; padding: 15px; border-color: #ffdce5; color: #e65a82; background: #fff3f6; --float-tilt: 8deg; animation-delay: -2s; }
+.snapshot-wave { display: flex; align-items: center; gap: 3px; height: 22px; }
+.snapshot-wave i { width: 3px; height: 9px; border-radius: 3px; background: #f18aa5; animation: snapshot-wave 1.8s ease-in-out infinite; }
+.snapshot-wave i:nth-child(2),.snapshot-wave i:nth-child(4) { height: 16px; animation-delay: -.5s; }
+.snapshot-wave i:nth-child(3) { height: 22px; animation-delay: -.9s; }
+.snapshot-wave i:nth-child(5) { animation-delay: -1.2s; }
+.snapshot-approval { right: -12px; bottom: -50px; border-color: #d6e9dd; background: #eaf5ee; --float-tilt: 4deg; animation-delay: -3.2s; }
+.snapshot-approval .snapshot-float-icon { color: #fff; background: #69aa8c; border-radius: 50%; }
+.snapshot-approval strong { color: #3b715c; }
+.snapshot-approval small { color: #6c927f; }
+@keyframes snapshot-drift { 0%,100% { transform: translateY(0) rotate(var(--float-tilt,0deg)); } 50% { transform: translateY(-9px) rotate(var(--float-tilt,0deg)); } }
+@keyframes snapshot-wave { 0%,100% { transform: scaleY(.65); } 50% { transform: scaleY(1); } }
+@media (max-width: 1250px) {
+  .landing-page .hero-visual .visual-label { bottom: calc(100% + 60px); }
+  .snapshot-language { left: -8px; }
+  .snapshot-voice { right: -12px; padding: 11px; }
+  .snapshot-sparkle-one { top: -56px; right: 24px; }
+  .snapshot-approval { right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snapshot-float,.snapshot-sparkle,.snapshot-dot,.snapshot-wave i { animation: none; }
+  .snapshot-float { transform: rotate(var(--float-tilt,0deg)); }
+}
+
 @media (max-width: 1050px) {
   .landing-page .hero-inner { grid-template-columns: minmax(0,560px); }
   .landing-page .hero-visual { display: none; }
