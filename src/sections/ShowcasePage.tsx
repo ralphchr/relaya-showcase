@@ -1,5 +1,12 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Brand } from "../components/Brand";
+
+/** What Relaya already does today: plain, checkable claims. */
+const proof = [
+  "Works in Google Meet today",
+  "Checks names, numbers and “maybe”",
+  "Nothing is said until you approve",
+];
 
 export function ShowcasePage() {
   return (
@@ -14,21 +21,25 @@ export function ShowcasePage() {
         <div className="hero-inner">
           <div className="hero-copy">
             <h1 id="hero-title">Speak clearly,<em>in your own words.</em></h1>
-            <p className="hero-lead">Say it the way it comes to you. Relaya turns it into clear English for your meeting, and nothing is said until you approve it.</p>
+            <p className="hero-lead">Think in Taglish. Relaya turns it into clear English for your meeting, and it can even say it for you in Google Meet.</p>
+            <ul className="hero-proof" aria-label="What Relaya does today">
+              {proof.map((item) => <li key={item}><span aria-hidden="true"><Check size={13} strokeWidth={3} /></span>{item}</li>)}
+            </ul>
             <div className="hero-actions">
-              <a className="button button-primary" href="/demo.html">Explore demo <ArrowRight size={17} aria-hidden="true" /></a>
+              <a className="button button-primary" href="/demo.html">See it in action <ArrowRight size={17} aria-hidden="true" /></a>
             </div>
           </div>
-          <div className="hero-visual">
+          <figure className="hero-visual">
             <img
               className="hero-app-snapshot"
-              src="/screenshots/relaya-new-session-live.png"
-              width={1140}
-              height={640}
-              alt="Relaya's New Session screen with Say it yourself and Speak for me modes, tone selection, names, and Start session controls."
+              src="/screens/meet-output.webp"
+              width={2160}
+              height={1350}
+              alt="A Google Meet call where Janelle's Relaya (AI) is speaking her approved sentence, beside the Relaya panel showing the sentence and a Stop button."
               fetchPriority="high"
             />
-          </div>
+            <figcaption>Relaya speaking an approved sentence in a Google Meet call</figcaption>
+          </figure>
         </div>
       </section>
     </main>
