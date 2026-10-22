@@ -4,6 +4,26 @@
 .sc-page section[id] { scroll-margin-top: 92px; }
 .sc-compact-links { display: flex; align-items: center; gap: 12px; }
 .sc-hero-lead { max-width: 480px; margin: -12px 0 28px; color: var(--text-2); font-size: 17px; line-height: 1.7; }
+.sc-page .sc-hero-preview { min-height: 0; width: 100%; display: block; padding: 36px 0; }
+.sc-preview-art { position: relative; isolation: isolate; }
+.sc-preview-art::before { content: ""; position: absolute; z-index: -1; inset: -24px 16px; border: 1px solid rgba(255,107,139,.22); border-radius: 44px; transform: rotate(6deg); }
+.sc-preview-art > img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--sh-xl); }
+.sc-preview-float { position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); color: var(--text); box-shadow: var(--sh-lg); font-size: 13px; line-height: 1.5; pointer-events: none; animation: sc-preview-drift 6s ease-in-out infinite; }
+.sc-preview-float svg { width: 18px; height: 18px; flex: none; }
+.sc-preview-icon { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 12px; background: var(--primary-20); color: var(--accent); }
+.sc-preview-language { top: -26px; left: 18px; }
+.sc-preview-language > span:last-child { display: flex; align-items: center; gap: 8px; }
+.sc-preview-language > span > svg { width: 14px; color: var(--accent); }
+.sc-preview-voice { top: 32px; right: -12px; padding: 12px 18px; border-color: transparent; border-radius: 40px; background: var(--accent); color: #fff; animation-delay: -2s; }
+.sc-preview-wave { display: flex; align-items: center; gap: 4px; height: 30px; }
+.sc-preview-wave i { display: block; width: 3px; border-radius: 4px; background: currentColor; }
+.sc-preview-approval { right: 22px; bottom: -48px; padding: 12px 20px 12px 12px; animation-delay: -4s; }
+.sc-preview-approval .sc-preview-icon { border-radius: 50%; background: var(--positive-20); color: var(--diff-ink); }
+.sc-preview-approval strong { color: var(--diff-ink); }
+.sc-preview-spark { position: absolute; width: 24px; height: 24px; color: var(--accent); pointer-events: none; }
+.sc-preview-spark-top { top: -30px; right: 40px; }
+.sc-preview-spark-bottom { bottom: -22px; left: 34px; color: #D49B4C; width: 20px; height: 20px; }
+@keyframes sc-preview-drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 .sc-product { max-width: 1440px; margin: 0 auto; padding: 72px 28px 120px; }
 .sc-section-intro { max-width: 780px; margin: 0 auto 36px; text-align: center; }
 .sc-section-intro .lp-pill { margin-bottom: 22px; }
@@ -41,7 +61,6 @@
 .sc-capability-note { max-width: 900px; margin: 30px auto 0; padding: 0 28px; text-align: center; }
 .sc-feature > p,.sc-use-case > p { margin: 0; color: var(--text-2); font-size: 17px; line-height: 1.7; }
 .sc-feature > p { flex: 1; }
-.sc-feature .lp-cta,.sc-use-case .lp-cta { align-self: flex-start; }
 .sc-how { padding-bottom: 100px; }
 .sc-four-steps { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 28px; }
 .sc-four-steps small { max-width: 210px; line-height: 1.6; }
@@ -54,7 +73,6 @@
 .sc-flow-result > span { color: var(--text-2); font-size: 13.5px; font-weight: 700; }
 .sc-flow-result p { margin: 10px 0 0; font-size: 28px; line-height: 1.38; font-weight: 700; letter-spacing: -.01em; animation: lp-enter-left .5s cubic-bezier(.2,.75,.25,1) both; }
 .sc-step-active .lp-step-art { animation: lp-step-pop .42s cubic-bezier(.2,.75,.25,1); outline: 3px solid var(--accent); outline-offset: 12px; }
-.sc-mode-link { margin: 20px 10px 0; }
 .sc-use-cases { padding-top: 84px; }
 .sc-use-case blockquote { margin: 4px 0 0; color: var(--text); font-size: 22px; font-weight: 700; line-height: 1.45; }
 .sc-case-arrow { width: 22px; height: 22px; color: var(--accent); }
@@ -149,6 +167,7 @@
   .sc-focused .lp-bar-in { gap: 10px; padding-right: 12px; padding-left: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .sc-preview-float { animation: none; }
   .sc-flow-result p,.sc-step-active .lp-step-art { animation: none; }
   .sc-page.lp-motion-ready [data-lp-reveal] { opacity: 1; transform: none; }
 }
