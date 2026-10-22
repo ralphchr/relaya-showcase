@@ -18,7 +18,8 @@ html, body { background: #fff; }
 .landing-page .hero-app-snapshot { border: 0; border-radius: 20px; box-shadow: 0 20px 50px rgba(68, 58, 65, .12); }
 
 /* One plain headline in the app's ink, a short line under it, one button */
-.landing-page .hero h1 { margin: 0; color: #443a41; font-size: clamp(36px, 4vw, 56px); font-weight: 800; letter-spacing: -.035em; line-height: 1.06; }
+.landing-page .hero h1 { margin: 0; color: #443a41; font-size: clamp(40px, 5.6vw, 80px); font-weight: 800; letter-spacing: -.05em; line-height: 1.02; }
+.landing-page .hero h1 em { display: block; color: #ff6b8b; font-style: normal; }
 .landing-page .hero-lead { max-width: 470px; margin: 20px 0 32px; color: #7b6f76; font-size: 18px; line-height: 1.6; }
 .landing-page .hero-inner { align-items: center; }
 
@@ -30,7 +31,7 @@ html, body { background: #fff; }
   .landing-page .hero h1 { margin: 0; }
 }
 @media (max-width: 480px) {
-  .landing-page .hero h1 { font-size: clamp(32px, 9.4vw, 44px); }
+  .landing-page .hero h1 { font-size: clamp(38px, 12vw, 56px); }
   .landing-page .hero-lead { margin: 14px 0 24px; font-size: 16px; }
 }
 @media (max-width: 480px) and (min-height: 700px) {
@@ -47,7 +48,12 @@ html, body { background: #fff; }
 .expand-button { border: 0; background: #fff4f6; color: #ff6b8b; gap: 7px; }
 .demo-page .expand-button svg { width: 14px; height: 14px; }
 .expand-button:hover { border: 0; color: #ff6b8b; background: #ffe8ee; }
-.gallery-stage { background: #fff7f8; }
+.gallery-stage { background: #fff; }
+/* Tabs stay on one line at every width: they scroll sideways instead of wrapping. */
+.demo-page .gallery-toolbar { flex-wrap: nowrap; }
+.demo-page .gallery-tabs { flex: 1 1 auto; flex-wrap: nowrap; min-width: 0; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+.demo-page .gallery-tabs::-webkit-scrollbar { display: none; }
+.demo-page .gallery-tabs button { flex: none; white-space: nowrap; }
 .gallery-caption { border-top: 0; background: #fff; backdrop-filter: none; }
 .gallery-arrow { border: 0; background: #fff; box-shadow: 0 4px 14px rgba(68, 58, 65, .14); }
 .gallery-arrow:hover { border: 0; }
