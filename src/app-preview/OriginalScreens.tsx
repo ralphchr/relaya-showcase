@@ -72,7 +72,6 @@ function ReviewScreen({ flagged = false }: { flagged?: boolean }) {
           <button type="button" className="icon-btn sm danger" aria-label="End session"><LogOut className="icon" /></button>
         </header>
         <div className="rp-body">
-          <div className="guest-preview-banner">Guest preview · sample responses</div>
           <section className={`draft${flagged ? " warn" : ""}`} aria-label="Context Guard">
             <div className="draft-said">
               <div className="draft-said-head"><span className="ibadge in"><Mic className="icon" /></span><span className="mini-tag">Tagalog</span><span className="mini-tag">English</span><button className="draft-edit" type="button"><Pencil className="icon" />Edit</button></div>
@@ -103,7 +102,6 @@ function DeliveryPanel({ speak = false }: { speak?: boolean }) {
         <button type="button" className="icon-btn sm danger" aria-label="End session"><LogOut className="icon" /></button>
       </header>
       <div className="rp-body">
-        <div className="guest-preview-banner">Sample approved sentence</div>
         {speak ? <div className="card output big"><div className="head"><span className="l"><Mark /></span><span className="chip chip-green"><span className="wave">{[6,12,8,14,7].map((height,index) => <i key={index} style={{height}} />)}</span>Speaking</span></div><p className="willsay">{approvedSentence}</p></div>
           : <div className="prompter"><div className="head"><span className="l"><Mark /><span className="chip chip-green"><Mic className="icon" />Unmute in your call</span></span><span className="chip chip-line">Read it aloud</span></div><p className="willsay">{approvedSentence}</p></div>}
       </div>
@@ -117,14 +115,14 @@ function DeliveryScreen({ speak = false }: { speak?: boolean }) {
   return (
     <div className="meet-output-preview">
       <section className="sample-meeting" aria-label="Illustrated Google Meet output">
-        <header className="sample-meeting-header"><span><Video size={24} />Google Meet</span><small>ILLUSTRATED DEMO · NOT A LIVE CALL</small></header>
+        <header className="sample-meeting-header"><span><Video size={24} />Google Meet</span></header>
         <div className="sample-meeting-title"><span>Product team catch-up</span><b>Relaya is speaking your approved sentence</b></div>
         <div className="sample-meeting-tiles">
           <div className="sample-person"><span className="sample-avatar">D</span><b>Dana (You)</b><MicOff size={18} /></div>
           <div className="sample-person"><span className="sample-avatar teammate">J</span><b>Jamie</b><MicOff size={18} /></div>
           <div className="sample-person sample-agent"><span className="sample-avatar"><Mark size={58} /></span><b>Dana’s Relaya (AI)</b><span className="sample-speaking"><Volume2 size={16} />Speaking</span></div>
         </div>
-        <div className="sample-meeting-sentence"><small>APPROVED SENTENCE · HEARD IN THE MEETING</small><p>“{approvedSentence}”</p></div>
+        <div className="sample-meeting-sentence"><p>“{approvedSentence}”</p></div>
         <footer className="sample-meeting-footer"><span><MicOff size={20} /></span><span><Video size={20} /></span><span className="sample-hangup"><Phone size={22} /></span></footer>
       </section>
       <DeliveryPanel speak />
