@@ -7,7 +7,7 @@ export const navigation = [
   { label: "The idea", href: "#about" },
   { label: "Features", href: "#features" },
   { label: "Walkthrough", href: "#walkthrough" },
-  { label: "Demo", href: "#demo" },
+  { label: "Demo", href: "/demo.html" },
 ];
 
 export const features: Array<{

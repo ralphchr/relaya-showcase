@@ -14,6 +14,7 @@
 .header-demo svg { color: var(--accent-deep); transition: transform .2s ease; }
 .header-demo:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
 .header-demo:hover svg { transform: translateX(3px); }
+.demo-back:hover svg { transform: translateX(-3px); }
 .menu-toggle { display: none; width: 42px; height: 42px; place-items: center; border: 1px solid var(--border); border-radius: 13px; background: var(--surface); }
 
 .hero { position: relative; isolation: isolate; padding: 72px 28px 112px; background: linear-gradient(150deg,#fff8f3 0%,#ffedef 53%,#ffe6d8 100%); }

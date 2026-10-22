@@ -16,7 +16,7 @@ function SiteHeader() {
         <nav className={`site-nav${menuOpen ? " is-open" : ""}`} id="primary-nav" aria-label="Main navigation">
           {navigation.map((item) => <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
         </nav>
-        <a className="header-demo" href="#demo">Explore demo <ArrowRight size={16} aria-hidden="true" /></a>
+        <a className="header-demo" href="/demo.html">Explore demo <ArrowRight size={16} aria-hidden="true" /></a>
         <button className="menu-toggle" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="primary-nav" onClick={() => setMenuOpen((open) => !open)}>
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
@@ -34,7 +34,7 @@ function Hero() {
           <span className="hero-pill"><Sparkles size={15} aria-hidden="true" /> Taglish in. Clear English out.</span>
           <h1 id="hero-title">Speak clearly,<br /><em>in your own words.</em></h1>
           <p>Find the English for what you want to say in a meeting. Review the sentence, then choose how it gets delivered.</p>
-          <div className="hero-actions"><a className="button button-primary" href="#demo">Explore demo <ArrowRight size={17} /></a><a className="button button-secondary" href="#walkthrough">How it works <ArrowDown size={16} /></a></div>
+          <div className="hero-actions"><a className="button button-primary" href="/demo.html">Explore demo <ArrowRight size={17} /></a></div>
           <div className="hero-proof"><span><Check size={14} /> You review before it is said</span><i aria-hidden="true" /><span><Check size={14} /> Two ways to speak</span></div>
         </div>
         <div className="hero-visual" data-reveal>
@@ -134,7 +134,7 @@ function Walkthrough() {
   );
 }
 
-function DemoSection() {
+export function DemoSection() {
   const [selected, setSelected] = useState(0);
   const [viewerOpen, setViewerOpen] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
@@ -227,7 +227,7 @@ function ProjectSection() {
 function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="footer-main"><div className="footer-brand"><Brand compact /><p>Find your words.<br />Keep your voice.</p></div><div className="footer-nav"><div><small>EXPLORE</small><a href="#about">The idea</a><a href="#features">Features</a><a href="#walkthrough">Walkthrough</a><a href="#demo">Product demo</a></div><div><small>ABOUT RELAYA</small><a href="#project">Project details</a><a href="#use-cases">Ways to use it</a><a href="#top">Back to top ↑</a></div><div><small>CONTACT</small>{project.contact.href ? <a href={project.contact.href}>Contact the project team</a> : <span className="footer-placeholder">{project.contact.label}</span>}</div></div><a className="footer-cta" href="#demo">Take a look around <ArrowRight size={16} /></a></div>
+      <div className="footer-main"><div className="footer-brand"><Brand compact /><p>Find your words.<br />Keep your voice.</p></div><div className="footer-nav"><div><small>EXPLORE</small><a href="#about">The idea</a><a href="#features">Features</a><a href="#walkthrough">Walkthrough</a><a href="/demo.html">Product demo</a></div><div><small>ABOUT RELAYA</small><a href="#project">Project details</a><a href="#use-cases">Ways to use it</a><a href="#top">Back to top ↑</a></div><div><small>CONTACT</small>{project.contact.href ? <a href={project.contact.href}>Contact the project team</a> : <span className="footer-placeholder">{project.contact.label}</span>}</div></div><a className="footer-cta" href="/demo.html">Take a look around <ArrowRight size={16} /></a></div>
       <div className="footer-bottom"><span>© {new Date().getFullYear()} Relaya · Product showcase</span><span>Made for clearer Tagalog–English conversations.</span><a href="#top" aria-label="Back to top">↑</a></div>
     </footer>
   );
@@ -257,9 +257,26 @@ export function ShowcasePage() {
     <main className="showcase">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <SiteHeader />
-      <div id="main-content"><Hero /><AboutSection /><FeatureExplorer /><Walkthrough /><DemoSection /><UseCases /><ProjectSection /></div>
-      <section className="closing-section"><span className="closing-mark"><Sparkles size={20} /></span><h2>Let’s find <em>your words.</em></h2><p>Take a look at how Relaya can help the next time you have something to say.</p><a className="button button-light" href="#demo">Explore the demo <ArrowRight size={16} /></a><svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 42 C240 80 480 0 720 40 S1200 80 1440 30V0H0Z" /></svg></section>
+      <div id="main-content"><Hero /><AboutSection /><FeatureExplorer /><Walkthrough /><UseCases /><ProjectSection /></div>
+      <section className="closing-section"><span className="closing-mark"><Sparkles size={20} /></span><h2>Let’s find <em>your words.</em></h2><p>Take a look at how Relaya can help the next time you have something to say.</p><a className="button button-light" href="/demo.html">Explore the demo <ArrowRight size={16} /></a><svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 42 C240 80 480 0 720 40 S1200 80 1440 30V0H0Z" /></svg></section>
       <SiteFooter />
+    </main>
+  );
+}
+
+export function DemoPage() {
+  return (
+    <main className="showcase demo-page">
+      <a className="skip-link" href="#demo-content">Skip to content</a>
+      <header className="site-header">
+        <div className="site-header-inner">
+          <Brand />
+          <a className="header-demo demo-back" href="/">
+            <ArrowLeft size={16} aria-hidden="true" /> Back to showcase
+          </a>
+        </div>
+      </header>
+      <div id="demo-content"><DemoSection /></div>
     </main>
   );
 }

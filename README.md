@@ -2,6 +2,8 @@
 
 A separate, static presentation site for Relaya. It reuses the app's logo, illustrations, fonts, and color palette, and recreates representative app screens with sample data. The showcase does not import the original app, connect to its API, or require a database, authentication, microphone access, or meeting service.
 
+The landing page is `index.html`. Its demo links open a standalone product demo at `demo.html`.
+
 The sample screens are interface recreations, not live screenshots. They are labeled as a demo in the page. Add approved screenshots and a demo recording later using the media steps below.
 
 ## Requirements
@@ -18,7 +20,7 @@ npm install
 npm run dev
 ```
 
-Vite prints the local address. To make a static production build:
+The showcase runs at `http://127.0.0.1:5175`, leaving port 5173 available for the main Relaya app. It stops if port 5175 is already occupied. To make a static production build:
 
 ```sh
 npm run build
@@ -81,6 +83,7 @@ showcase/
 │   ├── sections/        # Page sections and demo interactions
 │   └── styles/          # Relaya tokens and responsive page styles
 ├── index.html
+├── demo.html             # Standalone product demo page
 ├── package.json
 ├── package-lock.json
 ├── tsconfig.json
