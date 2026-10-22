@@ -23,8 +23,8 @@ export function ShowcasePage() {
             <img
               className="hero-app-snapshot"
               src="/screenshots/relaya-new-session-live.png"
-              width={965}
-              height={631}
+              width={1140}
+              height={640}
               alt="Relaya's New Session screen with Say it yourself and Speak for me modes, tone selection, names, and Start session controls."
               fetchPriority="high"
             />

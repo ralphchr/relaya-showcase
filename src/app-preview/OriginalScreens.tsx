@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowRight, Bell, BookOpenText, Check, ChevronDown, ChevronRight, ChevronUp, CircleHelp, LogOut, Mic, MicOff, PanelLeft, Pencil, Phone, PictureInPicture2, Play, Plus, RotateCcw, Search, Settings, ShieldAlert, ShieldCheck, Square, Video, Volume2 } from "lucide-react";
+import { ArrowRight, Bell, BookOpenText, Captions, Check, ChevronDown, ChevronRight, ChevronUp, CircleHelp, EllipsisVertical, Hand, LayoutGrid, LogOut, MessageSquare, Mic, MicOff, MonitorUp, PanelLeft, Pencil, Phone, PictureInPicture2, Play, Plus, RotateCcw, Search, Settings, ShieldAlert, ShieldCheck, Smile, Square, Users, VideoOff, Volume2 } from "lucide-react";
 import type { ScreenId } from "../data/showcase";
 
 function Mark({ size = 30 }: { size?: number }) {
@@ -21,7 +21,7 @@ function WorkspaceShell({ title, children }: { title: string; children: ReactNod
           <div className="rec-l"><span>Recents</span><span className="rec-all">See all</span></div>
           <div className="rec-g"><div className="rec-day">Today</div>{["11:35 AM", "10:26 AM", "10:03 AM"].map(time => <div className="rec-i" key={time}><span className="rec-mode">Say it yourself</span><small className="rec-when">{time}</small></div>)}</div>
         </div>
-        <div className="account-anchor"><div className="me"><span className="av">D</span><span className="me-text is-ready"><b>Dana Dela Cruz</b><small>Free plan · 8 of 8 sessions left</small></span><ChevronUp className="me-chev" /></div></div>
+        <div className="account-anchor"><div className="me"><span className="av"><img className="av-photo" src="/assets/janelle.jpg" alt="" /></span><span className="me-text is-ready"><b>Janelle Angeli Ranario</b><small>Free plan · 8 of 8 sessions left</small></span><ChevronUp className="me-chev" /></div></div>
       </aside>
       <section className="app-main">
         <header className="topbar"><h1 className="pt">{title}</h1><div className="tb-r"><span className="tb-ic"><CircleHelp className="icon" /></span><span className="tb-ic"><Bell className="icon" /></span></div></header>
@@ -37,7 +37,7 @@ function SetupScreen() {
       <div className="launch">
         <div className="launch-glow" aria-hidden="true"><i /><i /></div>
         <p className="launch-date">Magandang Gabi, Tara Na!</p>
-        <h2 className="launch-title">Ready for your call, Dana?</h2>
+        <h2 className="launch-title">Ready for your call, Janelle?</h2>
         <p className="launch-lead">Pick how you’ll speak. Relaya handles the English.</p>
         <div className="launch-card">
           <div className="launch-modes">
@@ -112,20 +112,36 @@ function DeliveryPanel({ speak = false }: { speak?: boolean }) {
 
 function DeliveryScreen({ speak = false }: { speak?: boolean }) {
   if (!speak) return <div className="session-page"><DeliveryPanel /></div>;
+  const tiles = [
+    { name: "Janelle Angeli Ranario", photo: "/assets/janelle.jpg", tone: "warm" },
+    { name: "Mark Holloway", initial: "M", tone: "blue" },
+    { name: "Janelle’s Relaya (AI)", agent: true, tone: "plum" },
+    { name: "Aira Santos", initial: "A", tone: "teal" },
+  ];
   return (
     <div className="meet-output-preview">
-      <section className="sample-meeting" aria-label="Illustrated Google Meet output">
-        <header className="sample-meeting-header"><span><Video size={24} />Google Meet</span></header>
-        <div className="sample-meeting-title"><span>Product team catch-up</span><b>Relaya is speaking your approved sentence</b></div>
-        <div className="sample-meeting-tiles">
-          <div className="sample-person"><span className="sample-avatar">D</span><b>Dana (You)</b><MicOff size={18} /></div>
-          <div className="sample-person"><span className="sample-avatar teammate">J</span><b>Jamie</b><MicOff size={18} /></div>
-          <div className="sample-person sample-agent"><span className="sample-avatar"><Mark size={58} /></span><b>Dana’s Relaya (AI)</b><span className="sample-speaking"><Volume2 size={16} />Speaking</span></div>
+      <section className="gmeet" aria-label="Google Meet call">
+        <div className="gmeet-top"><span>10:42 AM<i />kqv-xmtp-ruz</span><span className="gmeet-people"><Users size={18} />4</span></div>
+        <div className="gmeet-grid">
+          {tiles.map((tile) => (
+            <div key={tile.name} className={`gmeet-tile ${tile.tone}${tile.agent ? " speaking" : ""}`}>
+              <span className={`gmeet-avatar${tile.agent ? " logo" : ""}`}>{tile.photo ? <img src={tile.photo} alt="" /> : tile.agent ? <Mark size={58} /> : tile.initial}</span>
+              <b className="gmeet-name">{tile.name}</b>
+              {tile.agent ? <span className="gmeet-bars"><i /><i /><i /></span> : <span className="gmeet-muted"><MicOff size={15} /></span>}
+            </div>
+          ))}
         </div>
-        <div className="sample-meeting-sentence"><p>“{approvedSentence}”</p></div>
-        <footer className="sample-meeting-footer"><span><MicOff size={20} /></span><span><Video size={20} /></span><span className="sample-hangup"><Phone size={22} /></span></footer>
+        <div className="gmeet-bar">
+          <span className="gmeet-meta">10:42 AM<i />kqv-xmtp-ruz</span>
+          <span className="gmeet-controls">
+            <span className="off"><MicOff size={20} /></span><span className="off"><VideoOff size={20} /></span>
+            <span><MonitorUp size={20} /></span><span><Smile size={20} /></span><span><Captions size={20} /></span><span><Hand size={20} /></span><span className="slim"><EllipsisVertical size={20} /></span>
+            <span className="hangup"><Phone size={22} style={{ transform: "rotate(135deg)" }} /></span>
+          </span>
+          <span className="gmeet-side"><MessageSquare size={20} /><Users size={20} /><LayoutGrid size={20} /></span>
+        </div>
       </section>
-      <DeliveryPanel speak />
+      <div className="gmeet-panel"><DeliveryPanel speak /></div>
     </div>
   );
 }
@@ -161,7 +177,7 @@ function VoiceScreen() {
           <h3>Voice</h3>
           <div className="voice-grid">{voices.map((voice, index) => <div key={voice.name} className={`voice-option${index === 0 ? " selected" : ""}`}><button className="voice-pick" type="button"><span className="voice-check">{index === 0 && <Check size={14} strokeWidth={3} />}</span><span><b>{voice.name}</b><small>{voice.accent} · {voice.gender}</small></span></button><button className="icon-action" type="button" aria-label={`Play ${voice.name}`}><Play size={16} /></button></div>)}</div>
           <label className="workspace-field"><span>Speaking speed <b>1.00×</b></span><small>The samples play at this speed too.</small><input type="range" className="speed-range" min="0.8" max="1.2" defaultValue="1" step="0.05" /><span className="speed-scale"><span>Slower</span><span>Natural</span><span>Faster</span></span></label>
-          <label className="workspace-field"><span>Agent name</span><small>People in the meeting see <b>Dana’s Relaya (AI)</b>. The AI label is always added. If the agent signs in with its own Google account, Meet shows that account’s name instead.</small><input defaultValue="Dana’s Relaya" /></label>
+          <label className="workspace-field"><span>Agent name</span><small>People in the meeting see <b>Janelle’s Relaya (AI)</b>. The AI label is always added. If the agent signs in with its own Google account, Meet shows that account’s name instead.</small><input defaultValue="Dana’s Relaya" /></label>
           <div className="workspace-actions"><button type="button" className="wp-button wp-button-primary">Save</button></div>
           <p className="workspace-local-note">You’re in the preview workspace, so this is saved in this browser only. Sign in to keep it in your account.</p>
         </section>
