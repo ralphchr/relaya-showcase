@@ -32,6 +32,17 @@ export function DemoSection() {
     if (!viewerOpen && element.open) element.close();
   }, [viewerOpen]);
 
+  // Keep the chosen tab in view when the row scrolls sideways.
+  useEffect(() => {
+    const tab = document.getElementById(`gallery-tab-${gallery[selected]!.id}`);
+    const row = tab?.parentElement;
+    if (!tab || !row) return;
+    // Scroll only the tab row, never the page.
+    const left = tab.offsetLeft - row.offsetLeft, right = left + tab.offsetWidth;
+    if (left < row.scrollLeft) row.scrollTo({ left: left - 8, behavior: "smooth" });
+    else if (right > row.scrollLeft + row.clientWidth) row.scrollTo({ left: right - row.clientWidth + 8, behavior: "smooth" });
+  }, [selected]);
+
   useEffect(() => {
     if (!selectedVideo || !videoRef.current) return;
     if (videoPlaying) void videoRef.current.play().catch(() => setVideoPlaying(false));
