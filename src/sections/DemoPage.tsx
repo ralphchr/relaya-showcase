@@ -64,10 +64,9 @@ export function DemoSection() {
         <SectionHeading title={<>See <em>Relaya</em> in action.</>} description="Follow one thought from setting up a session to saying it in your meeting." />
         <div className="demo-gallery" id="demo-gallery" data-reveal>
           <div className="gallery-stage" id="gallery-panel" aria-roledescription="carousel" aria-label="Relaya sample screens" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-            <button className="expand-button" type="button" aria-label="Expand preview" title="Expand preview" onClick={() => setViewerOpen(true)}><Maximize size={22} strokeWidth={2.25} aria-hidden="true" /></button>
             <MediaPreview key={current.id} src={current.src} screen={current.screen} alt={current.caption} className="gallery-screen" />
             <button className="gallery-arrow prev" type="button" aria-label="Previous sample screen" onClick={() => changeSlide(-1)}><ArrowLeft size={18} /></button><button className="gallery-arrow next" type="button" aria-label="Next sample screen" onClick={() => changeSlide(1)}><ArrowRight size={18} /></button>
-            <div className="gallery-caption"><div><h3>{current.title}</h3><p>{current.caption}</p></div><div className="gallery-dots" aria-label="Choose a sample screen">{gallery.map((item, index) => <button type="button" key={item.id} className={index === selected ? "active" : ""} aria-label={`Show ${item.title}`} aria-pressed={index === selected} onClick={() => setSelected(index)} />)}</div></div>
+            <div className="gallery-caption"><div><h3>{current.title}</h3><p>{current.caption}</p></div><div className="gallery-controls"><div className="gallery-dots" aria-label="Choose a sample screen">{gallery.map((item, index) => <button type="button" key={item.id} className={index === selected ? "active" : ""} aria-label={`Show ${item.title}`} aria-pressed={index === selected} onClick={() => setSelected(index)} />)}</div><button className="expand-button" type="button" aria-label="Expand preview" title="Expand preview" onClick={() => setViewerOpen(true)}><Maximize size={22} strokeWidth={2.25} aria-hidden="true" /></button></div></div>
           </div>
         </div>
         <div className="video-demo" data-reveal>
