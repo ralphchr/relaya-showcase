@@ -171,3 +171,9 @@ export const project = {
   // Replace these with an approved public contact link and its display text.
   contact: { href: null as string | null, label: "Contact details to be added by the project owners." },
 };
+
+/** The interest survey shown at the end of the demo page. */
+export const interestForm = {
+  link: "https://docs.google.com/forms/d/e/1FAIpQLSfOrebAwLjNw-ICqqiTWSolZFm2N42TrPcBYeyCcFe6XXsCkg/viewform?usp=header",
+  embed: "https://docs.google.com/forms/d/e/1FAIpQLSfOrebAwLjNw-ICqqiTWSolZFm2N42TrPcBYeyCcFe6XXsCkg/viewform?embedded=true",
+};
