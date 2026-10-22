@@ -1,6 +1,5 @@
-import { ArrowRight, AudioLines, Check, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Brand } from "../components/Brand";
-import { MediaPreview } from "../components/MediaPreview";
 
 export function ShowcasePage() {
   return (
@@ -9,7 +8,6 @@ export function ShowcasePage() {
       <header className="site-header" id="top">
         <div className="site-header-inner">
           <Brand />
-          <a className="header-demo" href="/demo.html">Explore demo <ArrowRight size={16} aria-hidden="true" /></a>
         </div>
       </header>
       <section className="hero" id="main-content" aria-labelledby="hero-title">
@@ -22,11 +20,15 @@ export function ShowcasePage() {
             </div>
           </div>
           <div className="hero-visual">
-            <div className="visual-label"><span className="status-dot" /> PRODUCT PREVIEW <span className="label-divider" /> SAMPLE DATA</div>
-            <MediaPreview screen="sentence" alt="Relaya sentence review screen with a sample English suggestion" className="hero-screen" />
-            <div className="hero-float float-guard"><span><ShieldCheck size={16} /></span><b>Meaning checked</b><small>“Siguro” kept as “might”</small></div>
-            <div className="hero-float float-approve"><span><Check size={15} /></span>You approve first</div>
-            <span className="hero-sticker" aria-hidden="true"><AudioLines size={19} /> Hear<br />yourself</span>
+            <div className="visual-label"><span className="status-dot" /> PRODUCT PREVIEW</div>
+            <img
+              className="hero-app-snapshot"
+              src="/screenshots/relaya-new-session-live.png"
+              width={965}
+              height={631}
+              alt="Relaya's New Session screen with Say it yourself and Speak for me modes, tone selection, names, and Start session controls."
+              fetchPriority="high"
+            />
           </div>
         </div>
       </section>

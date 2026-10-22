@@ -1,0 +1,19 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { OriginalScreens } from "./OriginalScreens";
+import "./original-styles/tokens.css";
+import "./original-styles/base.css";
+import "./original-styles/ui.css";
+import "./original-styles/shell.css";
+import "./original-styles/new-session.css";
+import "./original-styles/panel.css";
+import "./original-styles/tone-select.css";
+import "./original-styles/workspace-pages.css";
+import "./preview-only.css";
+import type { ScreenId } from "../data/showcase";
+
+const requested = new URLSearchParams(window.location.search).get("screen");
+const screen: ScreenId = requested === "sentence" || requested === "guard" || requested === "workspace" ? requested : "setup";
+const root = document.getElementById("root")!;
+root.setAttribute("inert", "");
+ReactDOM.createRoot(root).render(<React.StrictMode><OriginalScreens screen={screen} /></React.StrictMode>);

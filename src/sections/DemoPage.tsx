@@ -48,7 +48,7 @@ export function DemoSection() {
             <button className="gallery-arrow prev" type="button" aria-label="Previous sample screen" onClick={() => changeSlide(-1)}><ArrowLeft size={18} /></button><button className="gallery-arrow next" type="button" aria-label="Next sample screen" onClick={() => changeSlide(1)}><ArrowRight size={18} /></button>
             <div className="gallery-caption"><div><span>SCREEN 0{selected + 1} / 0{gallery.length}</span><h3>{current.title}</h3><p>{current.caption}</p></div><div className="gallery-dots" aria-label="Choose a sample screen">{gallery.map((item, index) => <button type="button" key={item.id} className={index === selected ? "active" : ""} aria-label={`Show ${item.title}`} aria-pressed={index === selected} onClick={() => setSelected(index)} />)}</div></div>
           </div>
-          <div className="gallery-replace-note"><ShieldCheck size={14} /><span>Interface recreations are shown until real screenshots are added. Replace them from one media list in the showcase configuration.</span></div>
+          <div className="gallery-replace-note"><ShieldCheck size={14} /><span>Sample preview only. Your microphone stays off and no meeting is connected.</span></div>
         </div>
         <div className="video-demo" data-reveal>
           <div className="video-copy"><p className="eyebrow"><span />Video demonstration</p><h3>{demoVideo.title}</h3><p>{demoVideo.description}</p>{!selectedVideo && <div className="video-coming"><span><CirclePlay size={16} /></span><b>Demo video coming soon</b><small>Drop an MP4 or WebM into <code>public/videos/</code> and add its path in <code>src/data/showcase.ts</code>.</small></div>}</div>

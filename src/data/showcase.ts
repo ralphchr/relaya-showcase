@@ -112,10 +112,10 @@ export const walkthrough: Array<{
 // Register real screenshots here as they arrive. `screen` supplies the accurate
 // interface recreation until a file is available; no broken-image state is shown.
 export const gallery = [
-  { id: "session-setup", title: "Choose a session", caption: "Pick a speaking mode and set up your call.", screen: "setup" as const, src: null as string | null },
+  { id: "session-setup", title: "New Session", caption: "Choose your speaking mode, tone, and names using Relaya’s original setup screen.", screen: "setup" as const, src: null as string | null },
   { id: "sentence-review", title: "Review your sentence", caption: "Read the suggested English before it is delivered.", screen: "sentence" as const, src: null as string | null },
   { id: "context-guard", title: "Check the details", caption: "See how names, numbers, and uncertainty are reviewed.", screen: "guard" as const, src: null as string | null },
-  { id: "workspace-settings", title: "Make it yours", caption: "See sample voice and pronunciation settings.", screen: "workspace" as const, src: null as string | null },
+  { id: "workspace-settings", title: "Voice settings", caption: "Choose an agent voice, speaking speed, and name.", screen: "workspace" as const, src: null as string | null },
 ];
 
 // Add the video path when a demonstration is ready. A designed placeholder is

@@ -4,7 +4,7 @@ A separate, static presentation site for Relaya. It reuses the app's logo, illus
 
 The landing page is `index.html`: a fixed, single-viewport intro with no scrolling or sections below it. Its demo links open a standalone product demo at `demo.html`. The intro uses the reference typography and colors, with smaller type on narrow or short screens to keep the action visible.
 
-The sample screens are interface recreations, not live screenshots. They are labeled as a demo in the page. Add approved screenshots and a demo recording later using the media steps below.
+The demo screens use the original app's styles and matching markup with sample data. They render in an isolated 1440 × 900 document and scale proportionally in the gallery and expanded viewer. See `src/app-preview/README.md` for the source mapping. Add approved screenshots and a demo recording later using the media steps below.
 
 ## Requirements
 

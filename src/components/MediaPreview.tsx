@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ScreenPreview } from "./ScreenPreview";
+import { OriginalAppPreview } from "./OriginalAppPreview";
 import type { ScreenId } from "../data/showcase";
 
 export function MediaPreview({ src, screen, alt, className = "" }: {
@@ -13,5 +13,5 @@ export function MediaPreview({ src, screen, alt, className = "" }: {
   if (src && !failed) {
     return <div className={`media-preview ${className}`}><img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} /></div>;
   }
-  return <ScreenPreview screen={screen} className={className} alt={alt} />;
+  return <OriginalAppPreview screen={screen} className={className} alt={alt} />;
 }

@@ -1,0 +1,6 @@
+/* Static sample states. The app's styles above are copied from its source. */
+html { overflow: hidden; scrollbar-gutter: auto; }
+body { overflow: hidden; }
+*, *::before, *::after { animation: none !important; transition: none !important; }
+.workspace-motion > * { opacity: 1; transform: none; }
+.spacer { flex: 1; }

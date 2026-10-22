@@ -1,0 +1,26 @@
+.session-preview { margin: 0; overflow: hidden; border: 1px solid #e9dcd8; border-radius: 24px; color: #443a41; background: #fff8f3; box-shadow: 0 28px 65px -20px rgba(120,60,80,.24), 0 3px 12px rgba(68,58,65,.04); }
+.session-preview-bar { display: flex; align-items: center; gap: 9px; min-height: 54px; padding: 12px 20px; border-bottom: 1px solid #eee0dc; background: #fffdf9; font-size: 13px; font-weight: 700; }
+.session-preview-bar img { display: block; object-fit: contain; }
+.session-preview-bar small { margin-left: auto; padding: 5px 8px; border: 1px solid #eddfdb; border-radius: 99px; color: #95848d; font-size: 8px; font-weight: 700; letter-spacing: .08em; }
+.session-preview-body { padding: clamp(20px,4cqw,28px); background: radial-gradient(ellipse at 0 0,rgba(255,194,209,.34),transparent 70%),#fff8f3; }
+.session-preview-body h3 { margin: 0; color: #443a41; font-size: clamp(24px,5.4cqw,32px); font-weight: 800; line-height: 1.15; letter-spacing: -.035em; }
+.session-preview-lead { margin: 9px 0 22px; color: #7b6f76; font-size: clamp(11px,2.5cqw,13px); line-height: 1.6; }
+.session-preview-modes { display: grid; gap: 12px; }
+.session-preview-mode { min-width: 0; display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid #e9dcd8; border-radius: 17px; background: rgba(255,255,255,.8); }
+.session-preview-mode.is-selected { padding: 11px; border: 2px solid #ff6b8b; background: #fff; box-shadow: 0 0 0 4px rgba(255,107,139,.1); }
+.session-preview-art { display: grid; place-items: center; flex: none; width: clamp(64px,16cqw,88px); height: 64px; overflow: hidden; border-radius: 11px; background: #fdedef; }
+.session-preview-art img { width: 104px; height: 65px; max-width: none; object-fit: contain; }
+.session-preview-mode-copy { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.session-preview-mode-copy b { font-size: clamp(14px,3.4cqw,18px); font-weight: 800; line-height: 1.25; letter-spacing: -.025em; }
+.session-preview-mode-copy small { color: #7b6f76; font-size: clamp(10px,2.4cqw,12px); line-height: 1.5; }
+.session-preview-radio { flex: none; display: grid; place-items: center; width: 20px; height: 20px; border: 2px solid #cdbfc3; border-radius: 50%; }
+.session-preview-mode.is-selected .session-preview-radio { border-color: #ff6b8b; color: #fff; background: #ff6b8b; }
+.session-preview-settings { display: grid; grid-template-columns: 1.05fr 1fr; gap: 10px; margin-top: 18px; }
+.session-preview-tone { display: flex; align-items: center; gap: 2px; min-height: 42px; padding: 4px; border-radius: 12px; background: #fcebed; }
+.session-preview-tone span { display: grid; place-items: center; flex: 1; min-height: 34px; padding: 0 5px; color: #7b6f76; font-size: clamp(9px,2.3cqw,12px); font-weight: 700; }
+.session-preview-tone span:first-child { border-radius: 9px; color: #443a41; background: #fff; box-shadow: 0 2px 6px rgba(68,58,65,.06); }
+.session-preview-names { display: flex; align-items: center; gap: 7px; min-width: 0; padding: 0 10px; border: 1px solid #e9dcd8; border-radius: 12px; background: #fff; font-size: clamp(9px,2.2cqw,12px); }
+.session-preview-names span { color: #7b6f76; font-weight: 600; }
+.session-preview-names b { color: #a79ba1; font-weight: 500; white-space: nowrap; }
+.session-preview-names svg { flex: none; margin-left: auto; color: #7b6f76; }
+.session-preview-start { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 46px; margin-top: 12px; border-radius: 99px; color: #fff; background: #ff6b8b; box-shadow: 0 4px 10px rgba(255,107,139,.16); font-size: 14px; font-weight: 800; }
