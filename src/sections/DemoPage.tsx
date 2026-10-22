@@ -1,9 +1,23 @@
 import { useEffect, useRef, useState, type MouseEvent, type TouchEvent } from "react";
-import { ArrowLeft, ArrowRight, Maximize, Play, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Maximize, Play, X } from "lucide-react";
 import { Brand } from "../components/Brand";
 import { MediaPreview } from "../components/MediaPreview";
 import { SectionHeading } from "../components/SectionHeading";
-import { demoVideo, gallery } from "../data/showcase";
+import { demoVideo, gallery, interestForm } from "../data/showcase";
+
+/** The interest survey (a Google Form), embedded after the demo. */
+function InterestSection() {
+  return (
+    <section className="interest" id="interest" aria-labelledby="interest-title" data-reveal>
+      <h2 id="interest-title">Would you use <em>Relaya?</em></h2>
+      <p>Tell us how you speak in meetings and what would help. It takes about two minutes and shapes what we build next.</p>
+      <div className="interest-form">
+        <iframe src={interestForm.embed} title="Relaya interest survey" loading="lazy">Loading the survey…</iframe>
+      </div>
+      <a className="interest-open" href={interestForm.link} target="_blank" rel="noreferrer">Open the survey in Google Forms <ExternalLink size={15} aria-hidden="true" /></a>
+    </section>
+  );
+}
 
 export function DemoSection() {
   const [selected, setSelected] = useState(0);
@@ -32,17 +46,6 @@ export function DemoSection() {
     if (!viewerOpen && element.open) element.close();
   }, [viewerOpen]);
 
-  // Keep the chosen tab in view when the row scrolls sideways.
-  useEffect(() => {
-    const tab = document.getElementById(`gallery-tab-${gallery[selected]!.id}`);
-    const row = tab?.parentElement;
-    if (!tab || !row) return;
-    // Scroll only the tab row, never the page.
-    const left = tab.offsetLeft - row.offsetLeft, right = left + tab.offsetWidth;
-    if (left < row.scrollLeft) row.scrollTo({ left: left - 8, behavior: "smooth" });
-    else if (right > row.scrollLeft + row.clientWidth) row.scrollTo({ left: right - row.clientWidth + 8, behavior: "smooth" });
-  }, [selected]);
-
   useEffect(() => {
     if (!selectedVideo || !videoRef.current) return;
     if (videoPlaying) void videoRef.current.play().catch(() => setVideoPlaying(false));
@@ -58,10 +61,8 @@ export function DemoSection() {
       <div className="section-wrap demo-inner">
         <SectionHeading title={<>See <em>Relaya</em> in action.</>} description="From setting up a session to saying it in your meeting." />
         <div className="demo-gallery" id="demo-gallery" data-reveal>
-          <div className="gallery-toolbar"><div className="gallery-tabs" role="tablist" aria-label="Relaya sample screens">
-            {gallery.map((item, index) => <button key={item.id} type="button" role="tab" aria-selected={index === selected} aria-controls="gallery-panel" id={`gallery-tab-${item.id}`} className={index === selected ? "active" : ""} onClick={() => setSelected(index)}>{item.title}</button>)}
-          </div><button className="expand-button" type="button" aria-label="Expand preview" onClick={() => setViewerOpen(true)}><Maximize size={14} strokeWidth={2.25} /><span className="expand-label">Expand preview</span></button></div>
-          <div className="gallery-stage" id="gallery-panel" role="tabpanel" aria-labelledby={`gallery-tab-${current.id}`} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <div className="gallery-stage" id="gallery-panel" aria-roledescription="carousel" aria-label="Relaya sample screens" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            <button className="expand-button" type="button" aria-label="Expand preview" title="Expand preview" onClick={() => setViewerOpen(true)}><Maximize size={16} strokeWidth={2.25} /></button>
             <MediaPreview key={current.id} src={current.src} screen={current.screen} alt={current.caption} className="gallery-screen" />
             <button className="gallery-arrow prev" type="button" aria-label="Previous sample screen" onClick={() => changeSlide(-1)}><ArrowLeft size={18} /></button><button className="gallery-arrow next" type="button" aria-label="Next sample screen" onClick={() => changeSlide(1)}><ArrowRight size={18} /></button>
             <div className="gallery-caption"><div><h3>{current.title}</h3><p>{current.caption}</p></div><div className="gallery-dots" aria-label="Choose a sample screen">{gallery.map((item, index) => <button type="button" key={item.id} className={index === selected ? "active" : ""} aria-label={`Show ${item.title}`} aria-pressed={index === selected} onClick={() => setSelected(index)} />)}</div></div>
@@ -75,6 +76,7 @@ export function DemoSection() {
               : <div className="video-soon"><span className="video-soon-play"><Play size={26} fill="currentColor" aria-hidden="true" /></span><b>Demo video coming soon</b></div>}
           </div>
         </div>
+        <InterestSection />
       </div>
       <dialog className="viewer-dialog" ref={dialog} aria-label={`Expanded preview: ${current.title}`} onClose={() => setViewerOpen(false)} onClick={dismissViewer}>
         <div className="viewer-content" onClick={(event) => event.stopPropagation()}>
@@ -94,9 +96,10 @@ export function DemoPage() {
       <header className="site-header">
         <div className="site-header-inner">
           <Brand />
-          <a className="header-demo demo-back" href="/">
-            <ArrowLeft size={16} aria-hidden="true" /> Back
-          </a>
+          <nav className="header-actions" aria-label="Page">
+            <a className="header-demo demo-back" href="/"><ArrowLeft size={16} aria-hidden="true" /> Back</a>
+            <a className="header-interest" href="#interest">I'm interested</a>
+          </nav>
         </div>
       </header>
       <div id="demo-content"><DemoSection /></div>

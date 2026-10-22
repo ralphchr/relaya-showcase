@@ -17,6 +17,7 @@ export function ShowcasePage() {
             <p className="hero-lead">Say it the way it comes to you. Relaya turns it into clear English for your meeting, and nothing is said until you approve it.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="/demo.html">Explore demo <ArrowRight size={17} aria-hidden="true" /></a>
+              <a className="button button-quiet" href="/demo.html#interest">I'm interested</a>
             </div>
           </div>
           <div className="hero-visual">
