@@ -172,8 +172,7 @@ export const project = {
   contact: { href: null as string | null, label: "Contact details to be added by the project owners." },
 };
 
-/** The interest survey shown at the end of the demo page. */
+/** The interest survey the demo page links to after the video. */
 export const interestForm = {
   link: "https://docs.google.com/forms/d/e/1FAIpQLSfOrebAwLjNw-ICqqiTWSolZFm2N42TrPcBYeyCcFe6XXsCkg/viewform?usp=header",
-  embed: "https://docs.google.com/forms/d/e/1FAIpQLSfOrebAwLjNw-ICqqiTWSolZFm2N42TrPcBYeyCcFe6XXsCkg/viewform?embedded=true",
 };
