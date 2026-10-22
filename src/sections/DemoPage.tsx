@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type TouchEvent } from "react";
 import { ArrowLeft, ArrowRight, Maximize, Play, X } from "lucide-react";
 import { Brand } from "../components/Brand";
 import { MediaPreview } from "../components/MediaPreview";
@@ -15,6 +15,15 @@ export function DemoSection() {
   const selectedVideo = Boolean(demoVideo.src && !videoFailed);
   const videoRef = useRef<HTMLVideoElement>(null);
   const changeSlide = (direction: number) => setSelected((index) => (index + direction + gallery.length) % gallery.length);
+  // Swipe left or right on the screen to change it (phones have no tab row).
+  const touchX = useRef<number | null>(null);
+  const onTouchStart = (event: TouchEvent<HTMLDivElement>) => { touchX.current = event.touches[0]?.clientX ?? null; };
+  const onTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    const start = touchX.current; touchX.current = null;
+    const end = event.changedTouches[0]?.clientX;
+    if (start === null || end === undefined || Math.abs(end - start) < 40) return;
+    changeSlide(end < start ? 1 : -1);
+  };
 
   useEffect(() => {
     const element = dialog.current;
@@ -41,7 +50,7 @@ export function DemoSection() {
           <div className="gallery-toolbar"><div className="gallery-tabs" role="tablist" aria-label="Relaya sample screens">
             {gallery.map((item, index) => <button key={item.id} type="button" role="tab" aria-selected={index === selected} aria-controls="gallery-panel" id={`gallery-tab-${item.id}`} className={index === selected ? "active" : ""} onClick={() => setSelected(index)}>{item.title}</button>)}
           </div><button className="expand-button" type="button" aria-label="Expand preview" onClick={() => setViewerOpen(true)}><Maximize size={14} strokeWidth={2.25} /><span className="expand-label">Expand preview</span></button></div>
-          <div className="gallery-stage" id="gallery-panel" role="tabpanel" aria-labelledby={`gallery-tab-${current.id}`}>
+          <div className="gallery-stage" id="gallery-panel" role="tabpanel" aria-labelledby={`gallery-tab-${current.id}`} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
             <MediaPreview key={current.id} src={current.src} screen={current.screen} alt={current.caption} className="gallery-screen" />
             <button className="gallery-arrow prev" type="button" aria-label="Previous sample screen" onClick={() => changeSlide(-1)}><ArrowLeft size={18} /></button><button className="gallery-arrow next" type="button" aria-label="Next sample screen" onClick={() => changeSlide(1)}><ArrowRight size={18} /></button>
             <div className="gallery-caption"><div><h3>{current.title}</h3><p>{current.caption}</p></div><div className="gallery-dots" aria-label="Choose a sample screen">{gallery.map((item, index) => <button type="button" key={item.id} className={index === selected ? "active" : ""} aria-label={`Show ${item.title}`} aria-pressed={index === selected} onClick={() => setSelected(index)} />)}</div></div>

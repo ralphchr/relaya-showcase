@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Brand } from "../components/Brand";
 
 export function ShowcasePage() {
@@ -13,8 +13,8 @@ export function ShowcasePage() {
       <section className="hero" id="main-content" aria-labelledby="hero-title">
         <div className="hero-inner">
           <div className="hero-copy">
-            <span className="hero-pill"><Sparkles size={15} aria-hidden="true" />Taglish in. Clear English out.</span>
-            <h1 id="hero-title">Speak clearly,<em>in your own words.</em></h1>
+            <h1 id="hero-title">Think in Taglish.<br />Speak clear English.</h1>
+            <p className="hero-lead">Say it the way it comes to you. Relaya turns it into clear English for your meeting, and nothing is said until you approve it.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="/demo.html">Explore demo <ArrowRight size={17} aria-hidden="true" /></a>
             </div>
