@@ -98,8 +98,6 @@ html, body { background: #fff; }
   .interest { margin-top: 64px; }
   .interest > p { font-size: 16px; }
   .interest-button { width: 100%; }
-  .demo-page .gallery-stage { padding-top: 18px; }
-  .demo-page .expand-button { top: 26px; right: 22px; width: 44px; height: 44px; min-height: 44px; }
 }
 
 /* Home: a calm entrance, one piece after another */
@@ -125,4 +123,11 @@ html, body { background: #fff; }
 }
 @media (prefers-reduced-motion: reduce) {
   .landing-page .hero h1, .landing-page .hero h1 em, .landing-page .hero-lead, .landing-page .hero-actions, .landing-page .hero-visual, .landing-page .hero-app-snapshot, .demo-page .expand-button { animation: none; }
+}
+
+
+/* Phones and small tablets: little space above the screen; expand sits on its corner */
+@media (max-width: 760px) {
+  .demo-page .gallery-stage { padding-top: 18px; }
+  .demo-page .expand-button { top: 26px; right: 22px; width: 44px; height: 44px; min-height: 44px; }
 }
