@@ -13,7 +13,6 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL("./index.html", import.meta.url)),
         demo: fileURLToPath(new URL("./demo.html", import.meta.url)),
-        video: fileURLToPath(new URL("./video.html", import.meta.url)),
         appPreview: fileURLToPath(new URL("./app-preview.html", import.meta.url)),
       },
     },
