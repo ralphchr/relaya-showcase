@@ -2,7 +2,9 @@
 
 A separate, static presentation site for Relaya. It reuses the app's logo, illustrations, fonts, and color palette, and recreates representative app screens with sample data. The showcase does not import the original app, connect to its API, or require a database, authentication, microphone access, or meeting service.
 
-The landing page is `index.html`: a fixed, single-viewport intro with no scrolling or sections below it. Its demo links open a standalone product demo at `demo.html`. The intro uses the reference typography and colors, with smaller type on narrow or short screens to keep the action visible.
+`index.html` extends the original app's landing page into a scrolling, demo-first showcase: hero, seven-step interactive tour, features, an animated sample flow, delivery modes, use cases, and an interest survey. The focused tour remains available at `demo.html`; the video demonstration has its own `video.html` page.
+
+The exact original design tokens and landing CSS are copied into `src/styles/source-landing/`. The base stylesheet only changes font URLs from `/fonts/` to `/assets/`; the font binaries and logo match the original app. New section arrangements live in `src/styles/showcase-extension.css`. The original application is not modified.
 
 The demo screens use the original app's styles and matching markup with sample data. They render in an isolated 1440 × 900 document and scale proportionally in the gallery and expanded viewer. See `src/app-preview/README.md` for the source mapping. Add approved screenshots and a demo recording later using the media steps below.
 
@@ -28,6 +30,18 @@ npm run preview
 ```
 
 The production files are written to `dist/`. No environment variables or backend services are needed.
+
+## Configure the interest survey
+
+Edit `src/data/interest.ts` and paste the published Google Forms `viewform` URL into `interestForm.embedUrl`. Optionally supply a separate Google Forms or `forms.gle` link in `openUrl`. The embed automatically adds `embedded=true`, and the fallback link opens the form in a new tab. Without an explicit fallback URL, it is derived from the embed URL.
+
+Until configured, the final section shows a survey-coming-soon placeholder. It does not display fake inputs or claim to collect responses. The iframe is responsive, lazy loaded, and always accompanied by the fallback link when a form is configured.
+
+## Interactive tour and motion
+
+All seven demonstrations remain available. `src/data/tour.ts` controls each description, accent, floating position, and preview composition. `useFeatureTour` handles fade-out, preview switching, fade-in, wraparound, rapid input, and reduced-motion preferences. Arrow keys, Home, and End work while the tour has focus; the native selector keeps its own keyboard behavior.
+
+The first screen is a capture of the original app. Other screens are isolated, inert samples rendered with the original app's styles. Google Meet is explicitly illustrated. Feature and use-case links select the relevant step. No microphone, account, or meeting connection is created.
 
 ## Add screenshots and video
 

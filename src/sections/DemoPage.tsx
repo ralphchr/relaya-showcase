@@ -1,20 +1,25 @@
-import { useEffect, useRef, useState, type MouseEvent } from "react";
-import { ArrowLeft, ArrowRight, CirclePlay, Expand, Mic, Play, ShieldCheck, Sparkles, Volume2, X } from "lucide-react";
-import { Brand } from "../components/Brand";
+import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
+import { ArrowLeft, ArrowRight, Expand, ShieldCheck, X } from "lucide-react";
+import { ShowcaseHeader } from "../components/ShowcaseHeader";
 import { MediaPreview } from "../components/MediaPreview";
-import { SectionHeading } from "../components/SectionHeading";
-import { demoVideo, gallery } from "../data/showcase";
+import { FloatingFeatureDescription } from "../components/FloatingFeatureDescription";
+import { useFeatureTour } from "../components/useFeatureTour";
+import { gallery } from "../data/showcase";
+import { tourDescriptions } from "../data/tour";
 
-export function DemoSection() {
-  const [selected, setSelected] = useState(0);
+export function DemoHeader({ video = false }: { video?: boolean }) {
+  return <ShowcaseHeader compact video={video} />;
+}
+
+export function DemoSection({ embedded = false, requestedStep = null }: { embedded?: boolean; requestedStep?: { index: number; request: number } | null }) {
+  const { selected, active, phase, select, move } = useFeatureTour(gallery.length);
   const [viewerOpen, setViewerOpen] = useState(false);
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
-  const current = gallery[selected]!;
-  const selectedVideo = Boolean(demoVideo.src && !videoFailed);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const changeSlide = (direction: number) => setSelected((index) => (index + direction + gallery.length) % gallery.length);
+  const current = gallery[active]!;
+  const composition = tourDescriptions[current.screen];
+  const count = `${String(active + 1).padStart(2, "0")} / ${String(gallery.length).padStart(2, "0")}`;
+
+  useEffect(() => { if (requestedStep) select(requestedStep.index); }, [requestedStep, select]);
 
   useEffect(() => {
     const element = dialog.current;
@@ -23,64 +28,58 @@ export function DemoSection() {
     if (!viewerOpen && element.open) element.close();
   }, [viewerOpen]);
 
-  useEffect(() => {
-    if (!selectedVideo || !videoRef.current) return;
-    if (videoPlaying) void videoRef.current.play().catch(() => setVideoPlaying(false));
-    else videoRef.current.pause();
-  }, [videoPlaying, selectedVideo]);
-
   const dismissViewer = (event?: MouseEvent<HTMLDialogElement>) => {
     if (!event || event.target === dialog.current) setViewerOpen(false);
   };
 
-  return (
-    <section className="demo-section" id="demo">
-      <div className="section-wrap demo-inner">
-        <SectionHeading eyebrow="Take a closer look" title={<>A closer look at<br /><em>Relaya in action.</em></>} description="Follow a thought from setup and review to speaking it yourself or delivering it through Google Meet. Finish with voice options and your session preferences." />
-        <div className="demo-gallery" id="demo-gallery" data-reveal>
-          <div className="gallery-toolbar"><div className="gallery-tabs" role="tablist" aria-label="Relaya sample screens">
-            {gallery.map((item, index) => <button key={item.id} type="button" role="tab" aria-selected={index === selected} aria-controls="gallery-panel" id={`gallery-tab-${item.id}`} className={index === selected ? "active" : ""} onClick={() => setSelected(index)}>{item.title}</button>)}
-          </div><button className="expand-button" type="button" onClick={() => setViewerOpen(true)}><Expand size={15} /> Expand preview</button></div>
-          <div className="gallery-stage" id="gallery-panel" role="tabpanel" aria-labelledby={`gallery-tab-${current.id}`}>
-            <div className="gallery-stage-wash" aria-hidden="true" />
-            <MediaPreview key={current.id} src={current.src} screen={current.screen} alt={current.caption} className="gallery-screen" />
-            <div className="gallery-badge"><span className="status-dot" /> SAMPLE SCREEN <i /> OFFLINE DEMO</div>
-            <button className="gallery-arrow prev" type="button" aria-label="Previous sample screen" onClick={() => changeSlide(-1)}><ArrowLeft size={18} /></button><button className="gallery-arrow next" type="button" aria-label="Next sample screen" onClick={() => changeSlide(1)}><ArrowRight size={18} /></button>
-            <div className="gallery-caption"><div><span>SCREEN 0{selected + 1} / 0{gallery.length}</span><h3>{current.title}</h3><p>{current.caption}</p></div><div className="gallery-dots" aria-label="Choose a sample screen">{gallery.map((item, index) => <button type="button" key={item.id} className={index === selected ? "active" : ""} aria-label={`Show ${item.title}`} aria-pressed={index === selected} onClick={() => setSelected(index)} />)}</div></div>
-          </div>
-          <div className="gallery-replace-note"><ShieldCheck size={14} /><span>Sample preview only. Your microphone stays off and no meeting is connected.</span></div>
+  const handleKeyboard = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.defaultPrevented) return;
+    const target = event.target as HTMLElement;
+    if (target.closest("select,input,textarea,[contenteditable=true]")) return;
+    if (event.key === "ArrowLeft") move(-1);
+    else if (event.key === "ArrowRight") move(1);
+    else if (event.key === "Home") select(0);
+    else if (event.key === "End") select(gallery.length - 1);
+    else return;
+    event.preventDefault();
+  };
+
+  return <section className="demo-section" id={embedded ? "interactive-tour" : "demo"} aria-labelledby={embedded ? "tour-heading" : "demo-title"} onKeyDown={handleKeyboard}>
+    <div className="section-wrap demo-inner">
+      <div className="demo-intro"><h1 id="demo-title">Relaya <em>in action.</em></h1><p>From your first thought to your final words.</p></div>
+      <div className="demo-gallery" id="demo-gallery">
+        <div className="gallery-toolbar">
+          <label className="demo-screen-picker"><span>Explore the app</span><select aria-label="Choose a demo screen" value={selected} onChange={(event) => select(Number(event.target.value))}>{gallery.map((item,index) => <option key={item.id} value={index}>{String(index + 1).padStart(2,"0")} · {item.title}</option>)}</select></label>
+          <button className="expand-button lp-cta" type="button" onClick={() => setViewerOpen(true)}><Expand size={16} />Expand preview</button>
         </div>
-        <div className="video-demo" data-reveal>
-          <div className="video-copy"><p className="eyebrow"><span />Video demonstration</p><h3>{demoVideo.title}</h3><p>{demoVideo.description}</p>{!selectedVideo && <div className="video-coming"><span><CirclePlay size={16} /></span><b>Demo video coming soon</b><small>Drop an MP4 or WebM into <code>public/videos/</code> and add its path in <code>src/data/showcase.ts</code>.</small></div>}</div>
-          <div className="video-frame">
-            {selectedVideo ? <video ref={videoRef} controls playsInline preload="metadata" poster={demoVideo.poster ?? undefined} src={demoVideo.src!} aria-label={demoVideo.title} onPlay={() => setVideoPlaying(true)} onPause={() => setVideoPlaying(false)} onError={() => setVideoFailed(true)} /> : <><div className="video-art" aria-hidden="true"><div className="video-art-window"><div className="video-art-bar"><i /><i /><i /><span>Relaya · sample session</span></div><div className="video-art-wave"><span><Mic size={14} /> TAGLISH THOUGHT</span><div>{[20, 34, 15, 28, 42, 23, 38, 18, 31, 16, 36, 22, 42, 17, 29, 38, 20, 32, 16, 25, 39].map((height, i) => <i key={i} style={{ height }} />)}</div></div><div className="video-art-card"><span><Sparkles size={12} /> RELAYA SUGGESTS</span><p>It <mark>might take about three more days</mark> before we can deliver it.</p><small><ShieldCheck size={12} /> Review before you approve</small></div></div><span className="video-preview-label"><span /> A LOOK INSIDE A SAMPLE SESSION</span></div><span className="video-play-overlay" aria-hidden="true"><span className="play-button"><Play size={19} fill="currentColor" /></span></span><div className="video-controls" aria-hidden="true"><span><Play size={12} fill="currentColor" /></span><i><b /></i><small>Demo video placeholder</small><Volume2 size={14} /><Expand size={14} /></div></>}
+        <div className={`gallery-stage tour-stage tour-composition-${composition.composition}`} id="gallery-panel" role="region" data-feature={current.screen} data-phase={phase} aria-labelledby="demo-screen-title" aria-busy={phase !== "idle"} tabIndex={0}>
+          <div className="gallery-image-area tour-preview-stack">
+            {gallery.map((item,index) => <div className="tour-screen-layer" key={item.id} data-active={index === active} aria-hidden={index !== active}>
+              <MediaPreview src={item.src} screen={item.screen} alt={item.caption} className="gallery-screen" />
+            </div>)}
           </div>
+          <div className="tour-description-announcement" aria-live="polite" aria-atomic="true">
+            <FloatingFeatureDescription screen={current.screen} title={current.title} index={active} total={gallery.length} />
+          </div>
+          <nav className="tour-navigation" aria-label="Feature navigation">
+            <button type="button" className="tour-previous lp-cta" aria-label="Previous demo step" onClick={() => move(-1)}><ArrowLeft size={16} />Previous</button>
+            <span className="tour-navigation-count" aria-hidden="true">{count}<span>Use ← → to explore</span></span>
+            <button type="button" className="tour-next lp-cta" aria-label="Next demo step" onClick={() => move(1)}>Next<ArrowRight size={16} /></button>
+          </nav>
         </div>
+        <div className="gallery-replace-note"><ShieldCheck size={15} /><span>Offline demo · microphone off · no meeting connected.</span></div>
       </div>
-      <dialog className="viewer-dialog" ref={dialog} aria-label={`Expanded preview: ${current.title}`} onClose={() => setViewerOpen(false)} onClick={dismissViewer}>
-        <div className="viewer-content" onClick={(event) => event.stopPropagation()}>
-          <div className="viewer-top"><div><span className="eyebrow"><span />SAMPLE SCREEN 0{selected + 1}</span><h2>{current.title}</h2></div><button type="button" aria-label="Close full screen preview" onClick={() => setViewerOpen(false)}><X size={20} /></button></div>
-          <div className="viewer-stage"><MediaPreview src={current.src} screen={current.screen} alt={current.caption} className="viewer-screen" /><button className="gallery-arrow prev" type="button" aria-label="Previous sample screen" onClick={() => changeSlide(-1)}><ArrowLeft size={18} /></button><button className="gallery-arrow next" type="button" aria-label="Next sample screen" onClick={() => changeSlide(1)}><ArrowRight size={18} /></button></div>
-          <p className="viewer-caption">{current.caption}</p>
-        </div>
-      </dialog>
-    </section>
-  );
+    </div>
+    <dialog className="viewer-dialog" ref={dialog} aria-label={`Expanded preview: ${current.title}`} onClose={() => setViewerOpen(false)} onClick={dismissViewer}>
+      <div className="viewer-content" onClick={(event) => event.stopPropagation()}>
+        <div className="viewer-top"><div><span className="eyebrow">SCREEN {count}</span><h2>{current.title}</h2></div><button type="button" aria-label="Close full screen preview" onClick={() => setViewerOpen(false)}><X size={20} /></button></div>
+        <div className="viewer-stage" data-phase={phase}><MediaPreview src={current.src} screen={current.screen} alt={current.caption} className="viewer-screen" /></div>
+        <div className="viewer-bottom"><button className="lp-cta" type="button" aria-label="Previous sample screen" onClick={() => move(-1)}><ArrowLeft size={18} /></button><p className="viewer-caption">{current.caption}</p><button className="lp-cta" type="button" aria-label="Next sample screen" onClick={() => move(1)}><ArrowRight size={18} /></button></div>
+      </div>
+    </dialog>
+  </section>;
 }
 
 export function DemoPage() {
-  return (
-    <main className="showcase demo-page">
-      <a className="skip-link" href="#demo-content">Skip to content</a>
-      <header className="site-header">
-        <div className="site-header-inner">
-          <Brand />
-          <a className="header-demo demo-back" href="/">
-            <ArrowLeft size={16} aria-hidden="true" /> Back to showcase
-          </a>
-        </div>
-      </header>
-      <div id="demo-content"><DemoSection /></div>
-    </main>
-  );
+  return <main className="lp showcase demo-page app-demo-page sc-focused"><a className="skip-link" href="#demo-content">Skip to content</a><DemoHeader /><div id="demo-content"><DemoSection /></div></main>;
 }
