@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { DemoPage } from "./sections/ShowcasePage";
+import { DemoPage } from "./sections/DemoPage";
 import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/showcase.css";

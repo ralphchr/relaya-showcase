@@ -2,7 +2,7 @@
 
 A separate, static presentation site for Relaya. It reuses the app's logo, illustrations, fonts, and color palette, and recreates representative app screens with sample data. The showcase does not import the original app, connect to its API, or require a database, authentication, microphone access, or meeting service.
 
-The landing page is `index.html`. Its demo links open a standalone product demo at `demo.html`.
+The landing page is `index.html`: a fixed, single-viewport intro with no scrolling or sections below it. Its demo links open a standalone product demo at `demo.html`. The intro uses the reference typography and colors, with smaller type on narrow or short screens to keep the action visible.
 
 The sample screens are interface recreations, not live screenshots. They are labeled as a demo in the page. Add approved screenshots and a demo recording later using the media steps below.
 

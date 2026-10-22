@@ -5,6 +5,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { min-width: 320px; scroll-behavior: smooth; scroll-padding-top: 92px; }
 body { min-width: 320px; margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-ui); -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-ui); }
 body, button, a { -webkit-tap-highlight-color: transparent; }
 button, input, video { font: inherit; }
 button { color: inherit; }

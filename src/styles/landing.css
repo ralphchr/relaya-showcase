@@ -1,0 +1,63 @@
+/* The intro fills one viewport; the product demo has its own document. */
+.landing-document,
+.landing-document body,
+.landing-document #root { height: 100%; overflow: hidden; }
+.landing-document { scroll-behavior: auto; scroll-padding-top: 0; }
+.landing-page { height: 100vh; height: 100dvh; display: grid; grid-template-rows: 66px minmax(0,1fr); overflow: hidden; }
+.landing-page .site-header { position: relative; top: auto; background: #fff8f3; }
+.landing-page .site-header-inner { width: min(1240px,calc(100% - 56px)); height: 100%; gap: 16px; }
+.landing-page .brand { gap: 10px; }
+.landing-page .brand img { width: 34px; height: 34px; }
+.landing-page .brand span { color: #ff6b8b; font-size: 19px; font-weight: 600; letter-spacing: .32em; }
+.landing-page .header-demo { min-height: 44px; padding: 0 18px; font-size: 15px; font-weight: 700; }
+
+.landing-page .hero { min-height: 0; padding: 24px 48px; display: flex; align-items: center; background: linear-gradient(160deg,#fff7f3 0%,#fff0f0 65%,#ffebe9 100%); }
+.landing-page .hero-inner { width: min(1240px,100%); height: 100%; min-height: 0; max-height: 640px; margin: 0 auto; grid-template-columns: 560px minmax(0,1fr); gap: 48px; }
+.landing-page .hero-copy { width: 100%; max-width: 560px; margin: 0; padding: 0; text-align: left; }
+.landing-page .hero-pill { min-height: 38px; padding: 0 16px; border: 0; background: #fff; color: #a34663; font-size: 14px; font-weight: 700; letter-spacing: normal; box-shadow: 0 1px 2px rgba(68,58,65,.06); }
+.landing-page .hero-pill svg { color: #ff6b8b; }
+.landing-page .hero h1 { max-width: none; margin: 22px 0 34px; color: #443a41; font-family: var(--font-ui); font-size: 84px; font-weight: 800; letter-spacing: -.05em; line-height: 1.02; }
+.landing-page .hero h1 em { display: block; color: #ff6b8b; font-style: normal; }
+.landing-page .hero-actions { justify-content: flex-start; margin: 0; }
+.landing-page .hero-actions .button { min-height: 56px; padding: 0 26px; font-size: 17px; font-weight: 700; }
+.landing-page .button-primary { color: #fff; background: #ff6b8b; box-shadow: 0 12px 28px rgba(255,107,139,.35); }
+.landing-page .button-primary:hover { background: #f15f82; }
+.landing-page .hero-visual { width: 100%; min-width: 0; margin: 0; }
+.landing-page .hero-screen { height: min(440px,58dvh); min-height: 0; transform: none; }
+.landing-page .float-guard { left: -12px; }
+.landing-page .float-approve { right: 0; }
+.landing-page .hero-sticker { right: -4px; }
+
+@media (max-width: 1050px) {
+  .landing-page .hero-inner { grid-template-columns: minmax(0,560px); }
+  .landing-page .hero-visual { display: none; }
+}
+@media (max-width: 700px) {
+  .landing-page .hero { padding: 24px 24px 24px 48px; }
+  .landing-page .hero h1 { font-size: clamp(40px,13.7vw,84px); }
+  .landing-page .hero-pill { font-size: clamp(11px,2.3vw,14px); }
+}
+@media (max-width: 560px) {
+  .landing-page .hero { padding-right: 24px; padding-left: 24px; }
+}
+@media (max-width: 480px) {
+  .landing-page .site-header-inner { width: calc(100% - 32px); gap: 12px; }
+  .landing-page .brand span { font-size: 16px; letter-spacing: .24em; }
+  .landing-page .header-demo { min-height: 40px; padding: 0 12px; font-size: 13px; }
+  .landing-page .hero-actions .button { font-size: 15.5px; min-height: 52px; }
+}
+/* Keep the complete intro and its action visible on short laptop/landscape views. */
+@media (max-height: 600px) {
+  .landing-page .hero { padding-top: 16px; padding-bottom: 16px; }
+  .landing-page .hero h1 { margin: 16px 0 24px; font-size: min(84px,13dvh,13.7vw); }
+  .landing-page .hero-screen { height: 320px; }
+}
+@media (max-height: 440px) {
+  .landing-page { grid-template-rows: 56px minmax(0,1fr); }
+  .landing-page .hero { padding-top: 12px; padding-bottom: 12px; }
+  .landing-page .hero-pill { min-height: 30px; }
+  .landing-page .hero h1 { margin: 12px 0 20px; }
+  .landing-page .hero-actions .button { min-height: 44px; }
+  .landing-page .hero-visual { display: none; }
+  .landing-page .hero-inner { grid-template-columns: minmax(0,560px); }
+}
