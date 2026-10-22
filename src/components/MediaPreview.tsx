@@ -11,7 +11,7 @@ export function MediaPreview({ src, screen, alt, className = "" }: {
   const [failed, setFailed] = useState(false);
   useEffect(() => setFailed(false), [src]);
   if (src && !failed) {
-    return <div className={`media-preview ${className}`}><img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} /></div>;
+    return <div className={`media-preview ${className}`}><img src={src} alt={alt} width={2160} height={1350} decoding="async" onError={() => setFailed(true)} /></div>;
   }
   return <OriginalAppPreview screen={screen} className={className} alt={alt} />;
 }
