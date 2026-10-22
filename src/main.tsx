@@ -10,6 +10,7 @@ import "./styles/source-landing/tokens.css";
 import "./styles/source-landing/base.css";
 import "./styles/source-landing/landing.css";
 import "./styles/showcase-extension.css";
+import "./styles/mobile-layout.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

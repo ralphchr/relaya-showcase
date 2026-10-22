@@ -1,0 +1,72 @@
+/* Phone layout: wide image-first blocks and an open reading rhythm. */
+@media (max-width: 640px) {
+  .sc-page .lp-hero { padding: 56px 24px 80px; }
+  .sc-page .lp-hero-in { gap: 48px; }
+  .sc-page .lp-hero h1 { margin: 28px 0; line-height: 1.08; }
+  .sc-page .sc-hero-lead { margin: 0 0 32px; line-height: 1.8; }
+  .sc-page .lp-actions { flex-direction: column; gap: 16px; }
+  .sc-page .lp-actions .lp-btn { flex: none; width: 100%; min-height: 54px; }
+  .sc-page .lp-stage { gap: 24px; padding-top: 0; }
+  .sc-page .lp-bubble { max-width: 100%; width: 100%; transform: none; padding: 22px; }
+  .sc-page .lp-wave-pill { margin: 0; }
+  .sc-page .lp-card { padding: 24px; }
+  .sc-page .lp-float-guard,.sc-page .lp-float-approve { display: none; }
+  .sc-page .lp-h2 { margin-bottom: 28px; line-height: 1.15; }
+  .sc-page .sc-product { padding: 72px 24px 88px; }
+  .sc-page .sc-section-intro { margin-bottom: 36px; }
+  .sc-page .sc-section-intro > p,.sc-page .sc-section-lead { font-size: 17px; line-height: 1.8; }
+
+  /* Let the preview determine its height instead of filling a tall nested card. */
+  .sc-page .sc-tour-shell { height: auto; }
+  .sc-page .sc-tour-shell .demo-gallery { display: block; height: auto; overflow: visible; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+  .sc-page .sc-tour-shell .gallery-toolbar { padding: 0 0 24px; border-bottom: 0; }
+  .sc-page .sc-tour-shell .tour-stage { grid-template-rows: auto auto auto; overflow: visible; background: transparent; }
+  .sc-page .sc-tour-shell .tour-stage::before { display: none; }
+  .sc-page .sc-tour-shell .tour-preview-stack { height: auto; width: calc(100% + 48px); margin: 0 -24px; aspect-ratio: 8 / 5; }
+  .sc-page .sc-tour-shell .tour-screen-layer { inset: 0; }
+  .sc-page .sc-tour-shell .gallery-screen iframe { border-radius: 0; box-shadow: none; }
+  .sc-page .sc-tour-shell .tour-description-entry { margin: 32px 0 28px; }
+  .sc-page .sc-tour-shell .tour-description { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; backdrop-filter: none; }
+  .sc-page .sc-tour-shell .tour-description::before { display: none; }
+  .sc-page .sc-tour-shell .tour-description h2 { margin: 14px 0; font-size: 24px; }
+  .sc-page .sc-tour-shell .tour-description p { font-size: 17px; line-height: 1.8; }
+  .sc-page .sc-tour-shell .tour-navigation { padding: 0 0 28px; }
+  .sc-page .sc-tour-shell .gallery-replace-note { padding: 18px 0 0; border-top: 1px solid var(--border); font-size: 12px; line-height: 1.7; }
+  .sc-page .sc-demo-disclosure { margin-top: 24px; gap: 24px; }
+  .sc-page .sc-demo-disclosure p { font-size: 13px; line-height: 1.8; }
+
+  .sc-page .sc-features,.sc-page .sc-use-cases { padding: 72px 24px 88px; }
+  .sc-page .lp-pricing-intro { padding: 0; }
+  .sc-page .lp-price-grid { margin-top: 40px; padding: 0; gap: 0; }
+  .sc-page .sc-feature,.sc-page .sc-use-case { padding: 36px 0; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; background: transparent; gap: 20px; }
+  .sc-page .sc-feature:first-child,.sc-page .sc-use-case:first-child { padding-top: 0; }
+  .sc-page .sc-feature:last-child,.sc-page .sc-use-case:last-child { border-bottom: 0; padding-bottom: 0; }
+  .sc-page .sc-feature h3,.sc-page .sc-use-case h3 { font-size: 22px; line-height: 1.4; letter-spacing: -.02em; text-transform: none; color: var(--text); }
+  .sc-page .sc-feature > p,.sc-page .sc-use-case > p { line-height: 1.8; }
+  .sc-page .sc-capability-note { padding: 0; margin-top: 40px; text-align: left; }
+  .sc-page .sc-how { padding: 104px 24px 80px; }
+  .sc-page .sc-four-steps { gap: 36px; }
+  .sc-page .sc-four-steps li { grid-template-columns: 64px minmax(0,1fr); justify-items: start; text-align: left; gap: 6px 22px; }
+  .sc-page .sc-four-steps .lp-step-art { grid-column: 1; grid-row: 1 / 3; width: 64px; height: 64px; margin: 0; box-shadow: var(--sh-lg); }
+  .sc-page .sc-four-steps .lp-step-art svg { width: 28px; height: 28px; }
+  .sc-page .sc-four-steps b { grid-column: 2; font-size: 22px; }
+  .sc-page .sc-four-steps small { grid-column: 2; max-width: none; line-height: 1.7; }
+  .sc-page .sc-flow-example { margin-top: 40px; padding: 24px; gap: 24px; }
+  .sc-page .sc-flow-top { gap: 20px; }
+  .sc-page .sc-flow-result p { font-size: 24px; line-height: 1.5; }
+  .sc-page .sc-delivery { padding: 72px 24px 88px; }
+  .sc-page .lp-mode-grid { gap: 48px; }
+  .sc-page .lp-mode { padding: 0; border-radius: 0; background: transparent; box-shadow: none; }
+  .sc-page.lp-motion-ready .lp-mode-grid.is-visible .lp-mode { transform: none; }
+  .sc-page .lp-mode img { width: calc(100% + 48px); max-width: none; margin: 0 -24px; border-radius: 0; }
+  .sc-page .lp-mode-foot { gap: 16px; padding: 28px 0 0; align-items: flex-start; }
+  .sc-page .lp-mode h3 { font-size: 24px; line-height: 1.3; }
+  .sc-page .lp-mode p { margin-top: 12px; line-height: 1.8; }
+  .sc-page .sc-mode-link { margin: 24px 0 0; }
+  .sc-page .sc-interest { padding: 112px 24px 80px; }
+  .sc-page .sc-interest-intro > p { margin: 0 0 36px; line-height: 1.8; }
+  .sc-page .sc-form-card { padding: 28px 20px; }
+  .sc-page .sc-form-placeholder { padding: 0; gap: 28px; }
+  .sc-page .sc-form-placeholder p { line-height: 1.8; }
+  .sc-page .lp-foot-in { padding: 32px 24px; }
+}

@@ -1,7 +1,7 @@
-/** Paste the published Google Forms URLs here. No submission is simulated. */
+/** Shareable interest survey link. */
 export const interestForm = {
   embedUrl: "",
-  openUrl: "",
+  openUrl: "https://forms.gle/Z9F4tvDdGTXo46it6",
 };
 
 export function googleFormLinks(config: { embedUrl: string; openUrl: string }) {
