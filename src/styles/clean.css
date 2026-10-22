@@ -73,7 +73,7 @@ html, body { background: #fff; }
 .demo-page .gallery-screen.media-preview, .demo-page .viewer-screen.media-preview { height: auto; min-height: 0; aspect-ratio: 8 / 5; background: #fff8f3; }
 .demo-page .media-preview img { object-fit: cover; }
 @media (min-width: 761px) { .demo-page .section-description { max-width: none; white-space: nowrap; } }
-.demo-page .expand-button { position: absolute; z-index: 5; top: 12px; right: 16px; width: 40px; height: 40px; min-height: 40px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 50%; color: #ff6b8b; background: #fff; box-shadow: 0 4px 14px rgba(68, 58, 65, .12); cursor: pointer; }
+.demo-page .expand-button { position: static; width: 40px; height: 40px; min-height: 40px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 50%; color: #ff6b8b; background: #fff; box-shadow: 0 4px 14px rgba(68, 58, 65, .12); cursor: pointer; }
 .demo-page .expand-button:hover { background: #fff4f6; }
 
 /* Interest survey: one clear invitation after the video */
@@ -130,5 +130,12 @@ html, body { background: #fff; }
 /* Phones and small tablets: little space above the screen; expand sits on its corner */
 @media (max-width: 760px) {
   .demo-page .demo-gallery .gallery-stage { padding: 18px 12px 0; }
-  .demo-page .expand-button { top: 26px; right: 22px; width: 44px; height: 44px; min-height: 44px; }
+  .demo-page .expand-button { width: 46px; height: 46px; min-height: 46px; }
+}
+/* Under the picture: the dots, then Expand */
+.demo-page .gallery-controls { display: flex; align-items: center; gap: 18px; flex: none; }
+.demo-page .gallery-controls .gallery-dots { align-self: center; padding: 0; }
+@media (max-width: 760px) {
+  .demo-page .gallery-caption { align-items: stretch; }
+  .demo-page .gallery-controls { justify-content: space-between; width: 100%; }
 }
