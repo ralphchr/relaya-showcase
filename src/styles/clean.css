@@ -2,18 +2,20 @@
  * Solid white pages with the Relaya app's pink, no gradients, washes or hairline
  * outlines: separation comes from soft shadows and space. Loaded last on both pages.
  */
-:root { --bg: #ffffff; --surface: #ffffff; }
+:root { --bg: #ffffff; --surface: #ffffff; --accent-deep: #ff6b8b; }
 html, body { background: #fff; }
 
-/* Header: plain white, no rule underneath */
-.site-header, .landing-page .site-header { border-bottom: 0; background: #fff; backdrop-filter: none; }
+/* Header: a real top bar like the app's, so the logo sits on something */
+.site-header, .landing-page .site-header { border-bottom: 0; background: #fff; backdrop-filter: none; box-shadow: 0 1px 0 #f1e7e4, 0 4px 18px rgba(68, 58, 65, .05); position: relative; z-index: 5; }
+.demo-page .site-header { position: sticky; top: 0; }
+.demo-page .site-header-inner { height: 68px; }
 .brand span, .landing-page .brand span { color: #ff6b8b; }
-.header-demo { border: 0; background: #fff4f6; color: #c93668; }
+.header-demo { border: 0; background: #fff4f6; color: #ff6b8b; }
 .header-demo:hover { border: 0; box-shadow: none; background: #ffe8ee; }
 
 /* Home */
 .landing-page .hero { background: #fff; }
-.landing-page .hero-pill { background: #fff4f6; box-shadow: none; }
+.landing-page .hero-pill { color: #ff6b8b; background: #fff4f6; box-shadow: none; }
 .landing-page .hero-app-snapshot { border: 0; border-radius: 20px; box-shadow: 0 20px 50px rgba(68, 58, 65, .12); }
 
 /* Phones: the real app screen sits under the button instead of empty space. */
@@ -34,9 +36,10 @@ html, body { background: #fff; }
 .gallery-toolbar { border-bottom: 0; }
 .gallery-tabs button { border: 0; }
 .gallery-tabs button.active { border: 0; color: #fff; background: #ff6b8b; }
-.gallery-tabs button:not(.active):hover { color: #c93668; background: #fff4f6; }
-.expand-button { border: 0; background: #fff4f6; color: #c93668; }
-.expand-button:hover { border: 0; color: #c93668; background: #ffe8ee; }
+.gallery-tabs button:not(.active):hover { color: #ff6b8b; background: #fff4f6; }
+.expand-button { border: 0; background: #fff4f6; color: #ff6b8b; gap: 7px; }
+.demo-page .expand-button svg { width: 14px; height: 14px; }
+.expand-button:hover { border: 0; color: #ff6b8b; background: #ffe8ee; }
 .gallery-stage { background: #fff7f8; }
 .gallery-caption { border-top: 0; background: #fff; backdrop-filter: none; }
 .gallery-arrow { border: 0; background: #fff; box-shadow: 0 4px 14px rgba(68, 58, 65, .14); }
@@ -59,6 +62,11 @@ html, body { background: #fff; }
   .demo-page .gallery-tabs::-webkit-scrollbar { display: none; }
   .demo-page .gallery-tabs button { flex: none; padding: 10px 14px; white-space: nowrap; }
   .demo-page .gallery-stage { padding-top: 24px; }
+  /* One row: swipeable tabs, then a small icon to expand */
+  .demo-page .gallery-toolbar { flex-direction: row; align-items: center; gap: 8px; }
+  .demo-page .gallery-tabs { flex: 1; min-width: 0; margin-right: 0; }
+  .demo-page .expand-button { align-self: center; width: 44px; padding: 0; justify-content: center; }
+  .demo-page .expand-label { display: none; }
   .demo-gallery, .video-demo { box-shadow: 0 6px 24px rgba(68, 58, 65, .08); }
   .video-soon-play { width: 56px; height: 56px; }
   .video-soon b { font-size: 16px; }

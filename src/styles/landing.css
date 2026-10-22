@@ -23,7 +23,7 @@
 .landing-page .button-primary { color: #fff; background: #ff6b8b; box-shadow: 0 12px 28px rgba(255,107,139,.35); }
 .landing-page .button-primary:hover { background: #f15f82; }
 .landing-page .hero-visual { width: 100%; min-width: 0; margin: 0; padding: 0; }
-.landing-page .hero-app-snapshot { display: block; width: 100%; height: auto; aspect-ratio: 965 / 631; border: 1px solid #eadbd7; border-radius: 22px; box-shadow: 0 24px 60px rgba(68,58,65,.13); }
+.landing-page .hero-app-snapshot { display: block; width: 100%; height: auto; aspect-ratio: 1140 / 640; border: 1px solid #eadbd7; border-radius: 22px; box-shadow: 0 24px 60px rgba(68,58,65,.13); }
 /* The label floats above the card without changing its vertical center. */
 .landing-page .hero-visual .visual-label { position: absolute; bottom: calc(100% + 12px); left: 50%; margin: 0; white-space: nowrap; transform: translateX(-50%); }
 

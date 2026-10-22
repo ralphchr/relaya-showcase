@@ -5,27 +5,36 @@ body { overflow: hidden; }
 .workspace-motion > * { opacity: 1; transform: none; }
 .spacer { flex: 1; }
 
-/* The Relaya panel uses the source app markup. Meet is an illustrative surround. */
-.meet-output-preview { display: grid; grid-template-columns: minmax(0,1fr) 560px; align-items: center; gap: 24px; min-height: 100vh; padding: 28px; background: var(--hero); }
-.sample-meeting { display: flex; flex-direction: column; gap: 24px; min-width: 0; height: calc(100vh - 64px); padding: 26px; border: 1px solid #41464e; border-radius: 24px; color: #f5f6f8; background: #202124; }
-.sample-meeting-header { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-.sample-meeting-header > span { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 700; }
-.sample-meeting-header > small { color: #bdc1c6; font-size: 9px; letter-spacing: .06em; }
-.sample-meeting-title { display: grid; gap: 6px; padding-top: 18px; }
-.sample-meeting-title > span { color: #bdc1c6; font-size: 14px; }
-.sample-meeting-title > b { font-size: 23px; line-height: 1.4; }
-.sample-meeting-tiles { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; flex: 1; min-height: 220px; }
-.sample-person { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-width: 0; padding: 22px 10px; border: 2px solid transparent; border-radius: 16px; background: #34373d; }
-.sample-avatar { width: 84px; height: 84px; display: grid; place-items: center; border-radius: 50%; color: white; background: #b86480; font-size: 34px; font-weight: 700; }
-.sample-avatar.teammate { background: #577c91; }
-.sample-person > b { max-width: 100%; text-align: center; font-size: 13px; }
-.sample-person > svg { position: absolute; top: 14px; right: 14px; color: #bdc1c6; }
-.sample-agent { border-color: #88b5fa; background: #2d3a4d; }
-.sample-agent .sample-avatar { background: #fff5f4; }
-.sample-speaking { display: flex; align-items: center; gap: 6px; color: #b8d3fd; font-size: 12px; }
-.sample-meeting-sentence { padding: 22px; border-radius: 16px; border: 1px solid #526354; background: #2c3931; }
-.sample-meeting-sentence > small { color: #b7d9c1; font-size: 10px; font-weight: 700; letter-spacing: .08em; }
-.sample-meeting-sentence > p { margin: 12px 0 0; font-size: 23px; line-height: 1.55; font-weight: 600; }
-.sample-meeting-footer { display: flex; justify-content: center; gap: 12px; }
-.sample-meeting-footer > span { width: 48px; height: 44px; display: grid; place-items: center; border-radius: 24px; background: #3c4043; }
-.sample-meeting-footer > .sample-hangup { width: 64px; background: #b9433e; }
+/* A Google Meet call (modeled on Meet's dark call view) beside the real Relaya panel. */
+.meet-output-preview { display: grid; grid-template-columns: minmax(0,1fr) 500px; height: 100vh; background: #202124; }
+.gmeet { position: relative; display: grid; grid-template-rows: 56px minmax(0,1fr) 88px; min-width: 0; padding: 0 16px; color: #e3e3e3; font-family: "Google Sans", Roboto, var(--font-ui, sans-serif); }
+.gmeet-top { display: flex; align-items: center; justify-content: space-between; padding: 0 8px; font-size: 17px; }
+.gmeet-top > span:first-child { visibility: hidden; }
+.gmeet-people { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 20px; background: #2d2e30; font-size: 15px; }
+.gmeet-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 10px; min-height: 0; }
+.gmeet-tile { position: relative; display: grid; place-items: center; min-height: 0; border-radius: 14px; overflow: hidden; }
+.gmeet-tile.warm { background: radial-gradient(circle at 50% 45%, #8a4a36, #4a2a24 75%); }
+.gmeet-tile.blue { background: radial-gradient(circle at 50% 45%, #3f5a8f, #26324f 75%); }
+.gmeet-tile.plum { background: radial-gradient(circle at 50% 45%, #7d3756, #45233a 75%); }
+.gmeet-tile.teal { background: radial-gradient(circle at 50% 45%, #2f6b6a, #1f3c3e 75%); }
+.gmeet-tile.speaking { box-shadow: inset 0 0 0 3px #a8c7fa; }
+.gmeet-avatar { width: 104px; height: 104px; display: grid; place-items: center; border-radius: 50%; overflow: hidden; color: #fff; background: rgba(255,255,255,.18); font-size: 44px; font-weight: 500; }
+.gmeet-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.gmeet-avatar.logo { background: #fff; }
+.gmeet-avatar.logo img { width: 62px; height: 62px; object-fit: contain; }
+.gmeet-name { position: absolute; left: 16px; bottom: 12px; color: #fff; font-size: 15px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
+.gmeet-muted { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: rgba(0,0,0,.3); }
+.gmeet-bars { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; gap: 2px; border-radius: 50%; background: #a8c7fa; }
+.gmeet-bars i { width: 3px; height: 8px; border-radius: 2px; background: #0b1d3b; }
+.gmeet-bars i:nth-child(2) { height: 13px; }
+.gmeet-bar { display: flex; align-items: center; justify-content: space-between; padding: 0 8px; }
+.gmeet-meta, .gmeet-top > span:first-child { display: flex; align-items: center; gap: 14px; font-size: 16px; }
+.gmeet-meta i, .gmeet-top i { width: 1px; height: 18px; background: #5f6368; }
+.gmeet-controls { display: flex; align-items: center; gap: 8px; }
+.gmeet-controls > span { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; color: #e3e3e3; background: #333537; }
+.gmeet-controls > span.off { color: #410e0b; background: #f9dedc; }
+.gmeet-controls > span.slim { width: 36px; background: #333537; }
+.gmeet-controls > span.hangup { width: 64px; border-radius: 24px; color: #fff; background: #dc362e; }
+.gmeet-side { display: flex; align-items: center; gap: 22px; color: #e3e3e3; }
+.gmeet-panel { display: flex; align-items: center; justify-content: center; padding: 24px; background: #fff8f3; }
+.gmeet-panel .rpanel { width: 100%; height: calc(100vh - 48px); }

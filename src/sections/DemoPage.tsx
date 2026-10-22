@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
-import { ArrowLeft, ArrowRight, Expand, Play, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Maximize, Play, X } from "lucide-react";
 import { Brand } from "../components/Brand";
 import { MediaPreview } from "../components/MediaPreview";
 import { SectionHeading } from "../components/SectionHeading";
@@ -40,7 +40,7 @@ export function DemoSection() {
         <div className="demo-gallery" id="demo-gallery" data-reveal>
           <div className="gallery-toolbar"><div className="gallery-tabs" role="tablist" aria-label="Relaya sample screens">
             {gallery.map((item, index) => <button key={item.id} type="button" role="tab" aria-selected={index === selected} aria-controls="gallery-panel" id={`gallery-tab-${item.id}`} className={index === selected ? "active" : ""} onClick={() => setSelected(index)}>{item.title}</button>)}
-          </div><button className="expand-button" type="button" onClick={() => setViewerOpen(true)}><Expand size={15} /> Expand preview</button></div>
+          </div><button className="expand-button" type="button" aria-label="Expand preview" onClick={() => setViewerOpen(true)}><Maximize size={14} strokeWidth={2.25} /><span className="expand-label">Expand preview</span></button></div>
           <div className="gallery-stage" id="gallery-panel" role="tabpanel" aria-labelledby={`gallery-tab-${current.id}`}>
             <MediaPreview key={current.id} src={current.src} screen={current.screen} alt={current.caption} className="gallery-screen" />
             <button className="gallery-arrow prev" type="button" aria-label="Previous sample screen" onClick={() => changeSlide(-1)}><ArrowLeft size={18} /></button><button className="gallery-arrow next" type="button" aria-label="Next sample screen" onClick={() => changeSlide(1)}><ArrowRight size={18} /></button>
