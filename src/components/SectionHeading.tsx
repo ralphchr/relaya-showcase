@@ -6,14 +6,14 @@ export function SectionHeading({
   description,
   align = "center",
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: ReactNode;
   description?: string;
   align?: "left" | "center";
 }) {
   return (
     <div className={`section-heading align-${align}`} data-reveal>
-      <p className="eyebrow"><span />{eyebrow}</p>
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <h2>{title}</h2>
       {description && <p className="section-description">{description}</p>}
     </div>

@@ -112,20 +112,20 @@ export const walkthrough: Array<{
 // Register real screenshots here as they arrive. `screen` supplies the accurate
 // interface recreation until a file is available; no broken-image state is shown.
 export const gallery = [
-  { id: "session-setup", title: "New Session", caption: "Choose your speaking mode, tone, and names using Relaya’s original setup screen.", screen: "setup" as const, src: null as string | null },
+  { id: "session-setup", title: "New Session", caption: "Pick how you'll speak, your tone, and the names Relaya should get right.", screen: "setup" as const, src: null as string | null },
   { id: "sentence-review", title: "Review your sentence", caption: "Read the suggested English before it is delivered.", screen: "sentence" as const, src: null as string | null },
   { id: "context-guard", title: "Check the details", caption: "See how names, numbers, and uncertainty are reviewed.", screen: "guard" as const, src: null as string | null },
-  { id: "say-output", title: "Say it yourself", caption: "After approval, the sentence appears in large type. Unmute in your call, read it in your own voice, then choose Done.", screen: "say-output" as const, src: null as string | null },
-  { id: "meet-output", title: "Through Google Meet", caption: "Once the host admits your labeled AI guest, approve a sentence and Relaya speaks it in Google Meet. You can stop playback at any time. The meeting view here is an illustration.", screen: "meet-output" as const, src: null as string | null },
-  { id: "workspace-settings", title: "Voice options", caption: "Choose from Heart, Bella, Emma, Michael, Fenrir, and George. Adjust speaking speed and set the name your labeled AI guest uses in meetings.", screen: "workspace" as const, src: null as string | null },
-  { id: "session-preferences", title: "Preferences", caption: "Finish by choosing your default speaking mode and tone, spoken languages, voice profile, and push-to-talk key. Settings also includes privacy information and email preferences.", screen: "preferences" as const, src: null as string | null },
+  { id: "say-output", title: "Say it yourself", caption: "Once you approve, the sentence shows in large type. Unmute and read it in your own voice.", screen: "say-output" as const, src: null as string | null },
+  { id: "meet-output", title: "Through Google Meet", caption: "Relaya joins your Google Meet as a labeled AI guest and says your approved sentence. Stop it anytime.", screen: "meet-output" as const, src: null as string | null },
+  { id: "workspace-settings", title: "Voice options", caption: "Pick the voice and speed Relaya speaks with in your meetings.", screen: "workspace" as const, src: null as string | null },
+  { id: "session-preferences", title: "Preferences", caption: "Set your usual mode, tone, languages, and push-to-talk key.", screen: "preferences" as const, src: null as string | null },
 ];
 
 // Add the video path when a demonstration is ready. A designed placeholder is
 // shown until then, so visitors never encounter a blank player.
 export const demoVideo = {
   title: "A meeting moment, from thought to reply",
-  description: "A short guided demo will show the full review and approval flow.",
+  description: "Relaya speaking for someone in a live Google Meet call, after they approve the sentence.",
   src: null as string | null,
   poster: null as string | null,
   screen: "sentence" as const,
