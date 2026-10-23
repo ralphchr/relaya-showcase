@@ -116,11 +116,13 @@ html, body { background: #fff; }
 
 /* Phones: everything centered, one column */
 @media (max-width: 760px) {
+  .landing-page .hero { align-items: center; }
+  .landing-page .hero-inner { grid-template-rows: minmax(0, 1fr); gap: 0; }
   .landing-page .hero-copy { margin: 0 auto; text-align: center; }
   .landing-page .hero h1 { font-size: clamp(36px, 11.5vw, 56px); }
   .landing-page .hero-lead { margin-right: auto; margin-left: auto; text-wrap: balance; }
   .landing-page .hero-actions { justify-content: center; }
-  .landing-page .hero-visual { margin: 0 auto; }
+  .landing-page .hero-visual { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .landing-page .hero h1, .landing-page .hero h1 em, .landing-page .hero-lead, .landing-page .hero-actions, .landing-page .hero-visual, .landing-page .hero-app-snapshot, .demo-page .expand-button { animation: none; }
