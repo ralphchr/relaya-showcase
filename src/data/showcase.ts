@@ -126,7 +126,7 @@ export const gallery = [
 export const demoVideo = {
   title: "A meeting moment, from thought to reply",
   description: "Relaya speaking for someone in a live Google Meet call, after they approve the sentence.",
-  src: null as string | null,
+  src: "/videos/Final_Demo.mp4",
   poster: null as string | null,
   screen: "sentence" as const,
 };

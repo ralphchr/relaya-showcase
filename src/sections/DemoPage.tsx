@@ -170,7 +170,7 @@ export function DemoPage() {
       <header className="site-header">
         <div className="site-header-inner">
           <Brand />
-          <a className="header-demo demo-back" href="/"><ArrowLeft size={16} aria-hidden="true" /> Back</a>
+          <nav className="showcase-header-nav" aria-label="Main navigation"><a href="/">HOME</a><a href="/demo.html" aria-current="page">FEATURES</a></nav>
         </div>
       </header>
       <div id="demo-content"><DemoSection /></div>

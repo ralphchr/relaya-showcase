@@ -6,12 +6,27 @@
 html, body { background: #fff; }
 
 /* Header: a real top bar like the app's, so the logo sits on something */
-.site-header, .landing-page .site-header { border-bottom: 0; background: #fff; backdrop-filter: none; box-shadow: 0 1px 0 #f1e7e4, 0 4px 18px rgba(68, 58, 65, .05); position: relative; z-index: 5; }
-.demo-page .site-header { position: sticky; top: 0; }
-.demo-page .site-header-inner { height: 68px; }
+.site-header, .landing-page .site-header { border-bottom: 0; background: #fff; backdrop-filter: none; box-shadow: 0 1px 0 #f1e7e4, 0 4px 18px rgba(68, 58, 65, .05); position: fixed; inset: 0 0 auto; height: 68px; z-index: 40; }
+.showcase .site-header-inner { width: min(1240px,calc(100% - 56px)); height: 68px; gap: 16px; }
+.showcase .brand { gap: 10px; flex: none; }
+.showcase .brand img { width: 34px; height: 34px; }
+.showcase .brand span { font-size: 19px; font-weight: 500; letter-spacing: .32em; }
+.landing-page { --landing-header-height: 68px; }
+.landing-page .hero { grid-row: 2; }
+.demo-page { height: 100vh; height: 100dvh; padding-top: 68px; overflow: hidden; }
+.demo-page #demo-content { height: 100%; overflow-x: hidden; overflow-y: auto; scroll-behavior: smooth; scroll-padding-top: 24px; }
 .brand span, .landing-page .brand span { color: #ff6b8b; }
 .header-demo { border: 0; background: #fff4f6; color: #ff6b8b; }
 .header-demo:hover { border: 0; box-shadow: none; background: #ffe8ee; }
+.showcase-header-nav { display: flex; align-items: center; gap: 26px; margin-left: auto; flex: none; }
+.showcase-header-nav a { display: inline-flex; align-items: center; min-height: 44px; color: #7b6f76; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+.showcase-header-nav a:hover,.showcase-header-nav a[aria-current="page"] { color: #ff6b8b; }
+@media (max-width: 480px) {
+  .showcase .site-header-inner { width: calc(100% - 32px); gap: 12px; }
+  .showcase .brand span { font-size: 16px; letter-spacing: .24em; }
+  .showcase-header-nav { gap: 16px; }
+  .showcase-header-nav a { font-size: 11px; letter-spacing: .03em; }
+}
 
 /* Home */
 .landing-page .hero { background: #fffcfb; }
