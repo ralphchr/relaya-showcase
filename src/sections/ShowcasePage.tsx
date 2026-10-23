@@ -8,7 +8,7 @@ export function ShowcasePage() {
       <header className="site-header" id="top">
         <div className="site-header-inner">
           <Brand />
-          <nav className="showcase-header-nav" aria-label="Main navigation"><a href="/" aria-current="page">HOME</a><a href="/demo.html">FEATURES</a></nav>
+          <nav className="showcase-header-nav" aria-label="Main navigation"><a href="/" aria-current="page">HOME</a><a href="/demo.html">DEMO</a></nav>
         </div>
       </header>
       <section className="hero" id="main-content" aria-labelledby="hero-title">
