@@ -1,7 +1,4 @@
-/*
- * Solid white pages with the Relaya app's pink, no gradients, washes or hairline
- * outlines: separation comes from soft shadows and space. Loaded last on both pages.
- */
+/* Shared finishing styles, loaded last on both pages. */
 :root { --bg: #ffffff; --surface: #ffffff; --accent-deep: #ff6b8b; }
 html, body { background: #fff; }
 
@@ -29,7 +26,13 @@ html, body { background: #fff; }
 }
 
 /* Home */
-.landing-page .hero { background: #fffcfb; }
+.landing-page .hero {
+  background:
+    radial-gradient(ellipse at 100% 4%, rgba(255,168,193,.3), transparent 58%),
+    radial-gradient(ellipse at 0% 90%, rgba(255,216,181,.38), transparent 58%),
+    radial-gradient(ellipse at 95% 100%, rgba(210,195,244,.2), transparent 54%),
+    linear-gradient(145deg,#fffaf8,#fff7fa);
+}
 .landing-page .hero-app-snapshot { border: 0; border-radius: 20px; box-shadow: 0 20px 50px rgba(68, 58, 65, .12); }
 
 /* One plain headline in the app's ink, a short line under it, one button */
@@ -66,10 +69,17 @@ html, body { background: #fff; }
 }
 
 /* Demo page */
-.demo-section { background: #fff; }
+.demo-section {
+  background:
+    radial-gradient(ellipse 90% 650px at 100% 0%, rgba(255,182,206,.28), transparent 75%),
+    radial-gradient(ellipse 80% 700px at 0% 52%, rgba(255,218,184,.3), transparent 75%),
+    radial-gradient(ellipse 90% 650px at 90% 100%, rgba(212,196,244,.26), transparent 75%),
+    linear-gradient(165deg,#fffaf8,#fff7fa 60%,#faf7ff);
+}
 .demo-gallery, .video-demo { border: 0; background: #fff; box-shadow: 0 10px 40px rgba(68, 58, 65, .08); }
 .gallery-toolbar { border-bottom: 0; }
-.gallery-stage { background: #fff; }
+.gallery-stage { background: linear-gradient(145deg,#fffdfb,#fff5f7 65%,#f8f4ff); }
+.video-demo { background: linear-gradient(135deg,#fff,#fff8f3); }
 .gallery-caption { border-top: 0; background: #fff; backdrop-filter: none; }
 .gallery-arrow { border: 0; background: #fff; box-shadow: 0 4px 14px rgba(68, 58, 65, .14); }
 .gallery-arrow:hover { border: 0; }
