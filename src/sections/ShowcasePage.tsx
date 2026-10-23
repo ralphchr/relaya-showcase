@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mic, Sparkles } from "lucide-react";
 import { Brand } from "../components/Brand";
 
 export function ShowcasePage() {
@@ -13,6 +13,12 @@ export function ShowcasePage() {
       <section className="hero" id="main-content" aria-labelledby="hero-title">
         <div className="hero-inner">
           <div className="hero-copy">
+            <div className="landing-accents" aria-hidden="true">
+              <Sparkles className="landing-spark landing-spark-top" />
+              <span className="landing-voice"><Mic size={16} /><span className="landing-voice-bars">{[8,15,22,12,18,9].map((height,index) => <i key={index} style={{height}} />)}</span></span>
+              <Sparkles className="landing-spark landing-spark-bottom" />
+              <i className="landing-dot landing-dot-one" /><i className="landing-dot landing-dot-two" />
+            </div>
             <h1 id="hero-title">Speak clearly,<em>in your own words.</em></h1>
             <p className="hero-lead">Say it the way it comes to you. Relaya turns it into clear English for your meeting, and nothing is said until you approve it.</p>
             <div className="hero-actions">
