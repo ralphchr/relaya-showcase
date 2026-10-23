@@ -79,6 +79,25 @@ html, body { background: #fff; }
 
 /* One screen at a time at every width: swipe, arrows or dots; title and caption below. */
 .demo-gallery { position: relative; }
+.demo-page .gallery-picture { position: relative; border-radius: 18px; }
+.demo-page .gallery-picture-open { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; cursor: zoom-in; }
+.demo-page .gallery-picture-open:focus-visible { outline-offset: -4px; }
+.demo-page .viewer-picture-viewport { width: 100%; height: 100%; min-height: 0; }
+.demo-page .viewer-zoom-canvas { position: relative; display: grid; place-items: center; width: 100%; min-height: 100%; }
+.demo-page .viewer-picture-zoom,.demo-page .viewer-zoom-reset,.demo-page .viewer-zoom-hint { display: none; }
+@media (max-width: 760px) {
+  .demo-page .viewer-content { grid-template-rows: auto minmax(0,1fr) auto auto; }
+  .demo-page .viewer-picture-viewport { overflow: auto; overscroll-behavior: contain; touch-action: pan-x pan-y pinch-zoom; }
+  .demo-page .viewer-zoom-canvas .viewer-screen { width: 100%; height: auto; min-height: 0; }
+  .demo-page .viewer-picture-zoom { display: block; position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+  .demo-page .viewer-picture-zoom:focus-visible { outline-offset: -4px; }
+  .demo-page .viewer-is-zoomed .viewer-zoom-canvas { width: 260%; }
+  .demo-page .viewer-is-zoomed .viewer-picture-zoom { cursor: zoom-out; }
+  .demo-page .viewer-is-zoomed > .gallery-arrow { display: none; }
+  .demo-page .viewer-is-zoomed .viewer-screen { animation: none; }
+  .demo-page .viewer-is-zoomed .viewer-zoom-reset { position: absolute; z-index: 5; top: 10px; right: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 14px; border: 0; border-radius: 999px; color: #443a41; background: #fff; box-shadow: 0 3px 14px rgba(68,58,65,.16); font-size: 13px; font-weight: 700; cursor: pointer; }
+  .demo-page .viewer-zoom-hint { display: block; margin: 12px 4px 0; color: #7b6f76; font-size: 11px; line-height: 1.5; text-align: center; }
+}
 /* The only rule for the space around the screen (more specific than the older ones, so build order can't change it). */
 .demo-page .demo-gallery .gallery-stage { padding: 44px 5% 0; touch-action: pan-y; }
 /* The screens are images now: same 1440×900 frame the live previews used. */
@@ -104,6 +123,14 @@ html, body { background: #fff; }
 .demo-page .expand-button:hover { animation: none; transform: scale(1.06); }
 @keyframes expand-pulse { 0% { box-shadow: 0 4px 14px rgba(68, 58, 65, .12), 0 0 0 0 rgba(255, 107, 139, .45); } 70% { box-shadow: 0 4px 14px rgba(68, 58, 65, .12), 0 0 0 9px rgba(255, 107, 139, 0); } 100% { box-shadow: 0 4px 14px rgba(68, 58, 65, .12), 0 0 0 0 rgba(255, 107, 139, 0); } }
 .section-description, .section-heading h2 { text-wrap: balance; }
+.demo-page .section-heading h2 { white-space: nowrap; text-wrap: nowrap; }
+.demo-page .section-heading { margin-bottom: 28px; }
+.demo-page .section-description { margin: 12px auto 0; font-size: 15px; line-height: 1.6; }
+@media (max-width: 760px) {
+  .demo-page .section-heading h2 { font-size: clamp(22px, 7.4vw, 40px); }
+  .demo-page .section-heading { margin-bottom: 24px; }
+  .demo-page .section-description { max-width: 360px; margin-top: 10px; font-size: 13px; line-height: 1.55; }
+}
 
 /* Demo motion stays on the surrounding presentation, with no automatic slides. */
 .demo-page .demo-section { --demo-slide-offset: 14px; }
